@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <VersionPrefix>0.4.0</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Description>A little library for doing brewers' math.</Description>
+  </PropertyGroup>
+
+</Project>
