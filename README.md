@@ -43,4 +43,4 @@ Console.WriteLine("Color = {0} MCU", color1+color2+color3);
 ## Handling exceptions
 BeerMath normally throws only one type of exception, the BeerMathException.  When this exception is thrown, the calculation you were running cannot be completed.  However, BeerMath hasn't been put into a bad state, so you can correct the error and retry the calculation.  For instance, if you try to enter a negative boil time when doing hop bitterness calculations, you'll get a BeerMathException with a message that reads "Boil time cannot be negative".
 
-BeerMath also makes liberal use of NotImplementedExceptions during development.  If you find these in released code, please file a bug at beermath.codeplex.com, as they should all be removed before release.
+BeerMath also makes liberal use of NotImplementedExceptions during development.  If you find these in released code, please file a bug, as they should all be removed before release.
