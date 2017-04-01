@@ -8,14 +8,15 @@ BeerMath is designed around decimal values for two reasons.  One, casting to dec
 Another design goal of BeerMath is to be as easy to use for developers as possible.  For instance, most operations return a strongly-typed value such as "Bitterness".  Bitterness has both a magnitude and a unit (so, for example, 55 IBUs).  However, in most use cases of the various calculation routines, I expect that your code will already be in a "I'm calculating IBUs" context.  Thus, Bitterness has an implicit conversion to decimal, which allows you drop the units automatically and get at the numbers.
 
 ## Practical use of BeerMath.net
-Version 0.2 of BeerMath.net has three types of calculations:
+Version 0.4 of BeerMath.net has several types of calculations:
 * Wort color
 * Hop bitterness
 * Alcohol content
+* Gravity
 
 I'll demonstrate the wort color APIs in this sample.  All BeerMath.net routines have XML documentation, so your IDE of choice should tell you how the other APIs work.  I'm still working on finding a Mono-friendly XML documentation generator (Sandcastle seems to require Windows, which isn't a showstopper but is less preferred).
 
-At the moment, all of BeerMath is contained in one assembly - BeerMath.dll.  Step 1 is simply to add a reference to this file to your project.
+At the moment, all of BeerMath is contained in one assembly - BeerMathLib.dll.  Step 1 is simply to add a reference to this file to your project.
 
 All the interesting functionality is contained in the BeerMath namespace.  This documentation assumes you've added "using BeerMath;" to the top of each file where you want to use BeerMath.net functionality, but of course you can always use a fully-qualified name (instead of "Hops.CalculateIbus()", you can type "BeerMath.Hops.CalculateIbus()").
 
