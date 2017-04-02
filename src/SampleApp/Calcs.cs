@@ -22,34 +22,34 @@ namespace BeerMath.Sample.Console
 		public static void McuTest()
 		{
 			decimal lbsGrain = PromptDecimal("Pounds of grain");
-        		decimal degLovibond = PromptDecimal("Degrees Lovibond");
-        		decimal totalVolume = PromptDecimal("Total volume");
+			decimal degLovibond = PromptDecimal("Degrees Lovibond");
+			decimal totalVolume = PromptDecimal("Total volume");
 
-            decimal MCUs = Malt.CalculateMcu(lbsGrain, degLovibond, totalVolume);
+            var MCUs = Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume);
 
-		    System.Console.WriteLine(String.Format("MCUs = {0}", MCUs));
+		    System.Console.WriteLine($"MCUs = {MCUs.Value}");
 		}
 
 		public static void SrmTest()
 		{
 			decimal lbsGrain = PromptDecimal("Pounds of grain");
-        		decimal degLovibond = PromptDecimal("Degrees Lovibond");
-        		decimal totalVolume = PromptDecimal("Total volume");
+			decimal degLovibond = PromptDecimal("Degrees Lovibond");
+			decimal totalVolume = PromptDecimal("Total volume");
 
-            decimal SRM = Malt.CalculateSrm(lbsGrain, degLovibond, totalVolume);
+            var SRM = Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume));
 
-		    System.Console.WriteLine(String.Format("SRM = {0}", SRM));
+		    System.Console.WriteLine($"SRM = {SRM.Value}");
 		}
 
 		public static void EbcTest()
 		{
 			decimal lbsGrain = PromptDecimal("Pounds of grain");
-        		decimal degLovibond = PromptDecimal("Degrees Lovibond");
-        		decimal totalVolume = PromptDecimal("Total volume");
+			decimal degLovibond = PromptDecimal("Degrees Lovibond");
+			decimal totalVolume = PromptDecimal("Total volume");
 
-            decimal EBC = Malt.CalculateEbc(lbsGrain, degLovibond, totalVolume);
+            var EBC = Ebc.FromSrm(Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume)));
 
-		    System.Console.WriteLine(String.Format("EBC = {0}", EBC));
+		    System.Console.WriteLine($"EBC = {EBC.Value}");
 		}
 
 		public static void IbuTest()

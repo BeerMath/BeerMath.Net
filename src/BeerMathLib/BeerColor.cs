@@ -1,6 +1,6 @@
 using System;
 
-namespace BeerMath
+namespace BeerMath.Deprecated
 {
 	/// <summary>
 	///   The various beer color calculations known to BeerMath
@@ -10,6 +10,7 @@ namespace BeerMath
 	/// <summary>
 	/// Represents the color of a wort or beer
 	/// </summary>
+	[Obsolete]
 	public sealed class BeerColor
 	{
 		private Decimal _Value;

@@ -62,16 +62,18 @@ namespace Tests
 		}
 
 		[Fact]
-		public void EbcCase ()
+		public void EbcFromSrm ()
 		{
-			decimal grain = 10m;
+			decimal lbs = 10m;
 			decimal degrees = 20m;
 			decimal gallons = 5m;
 
-			decimal result = Malt.CalculateEbc(grain, degrees, gallons);
+			var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);
+			var srm = Srm.EstimateMorey(mcu);
+			var result = Ebc.FromSrm(srm);
 
-			Assert.True(result >= 36.91m);
-			Assert.True(result <= 36.92m);
+			Assert.True(result.Value >= 36.91m);
+			Assert.True(result.Value <= 36.92m);
 		}
 	}
 }

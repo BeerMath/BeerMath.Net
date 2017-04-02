@@ -20,15 +20,20 @@ namespace BeerMath
             {
                 Value = (decimal)(MoreySrmFactor * Math.Pow((double)mcu.Value, MoreySrmExponent)),
             };
+
             if(srm.Value <= 50m)
             {
                 return srm;
             }
-
-            throw new InaccurateResultException($"Morey's equations only work up to SRM 50; this color was estimated at ${srm.Value}.");
+            throw new InaccurateResultException($"Morey's equations only work up to SRM 50; tried to store {srm.Value}.");
         }
 
-        // private constructor so no one can create this directly
+        internal static Srm FromDecimal(decimal raw)
+        {
+            return new Srm() { Value = raw };
+        }
+
+        // internal constructor so consumers cannot create this directly
         private Srm() {}
 
         // Morey's constants
