@@ -30,6 +30,7 @@ namespace BeerMath
 		/// <returns>
 		/// A <see cref="BeerColor"/>
 		/// </returns>
+		[Obsolete]
         public static BeerColor CalculateMcu(decimal GrainLbs, decimal DegreesLovibond, decimal VolumeGallons)
         {
             return new BeerColor((GrainLbs * DegreesLovibond) / VolumeGallons, BeerColorType.Mcu);
@@ -50,6 +51,7 @@ namespace BeerMath
 		/// <returns>
 		/// A <see cref="BeerColor"/>
 		/// </returns>
+		[Obsolete]
 	    public static BeerColor CalculateSrm(decimal GrainLbs, decimal DegreesLovibond, decimal VolumeGallons)
         {
 			BeerColor Mcu = new BeerColor((GrainLbs * DegreesLovibond) / VolumeGallons, BeerColorType.Mcu);
