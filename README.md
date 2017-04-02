@@ -46,9 +46,3 @@ Then we can estimate the SRM of the final beer:
 ```csharp
 var beerColor = Srm.EstimateMorey(sumColor);
 ```
-
-## Handling exceptions
-BeerMath normally throws only one type of exception, the BeerMathException.
-When this exception is thrown, the calculation you were running cannot be completed.
-However, BeerMath hasn't been put into a bad state, so you can correct the error and retry the calculation.
-For instance, if you try to enter a negative boil time when doing hop bitterness calculations, you'll get a BeerMathException with a message that reads "Boil time cannot be negative".

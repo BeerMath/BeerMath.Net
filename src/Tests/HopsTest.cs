@@ -10,22 +10,20 @@ namespace Tests
     {
 
         [Fact]
-        public void IbuCase ()
+        public void IbuFromStandard ()
         {
             decimal alpha = 6.0m;
             decimal ozs = 1.0m;
             decimal minutes = 60m;
 
-            Bitterness result = Hops.CalculateIbus(alpha, ozs, minutes);
+            var result = Ibu.FromStandard(alpha, ozs, minutes);
 
-            Assert.IsAssignableFrom<BitternessType>(result.Type);
-            Assert.True(result.Type == BitternessType.Ibu);
             Assert.True(result.Value >= 24.82m);
             Assert.True(result.Value <= 24.83m);
         }
 
         [Fact]
-        public void IbuTinsethCase ()
+        public void IbuFromTinseth ()
         {
             decimal alpha = 6.0m;
             decimal ozs = 1.0m;
@@ -33,10 +31,8 @@ namespace Tests
             Gravity gravity = new Gravity(50m);
             decimal gallons = 5m;
 
-            Bitterness result = Hops.CalculateIbusTinseth(alpha, ozs, minutes, gravity, gallons);
+            var result = Ibu.FromTinseth(alpha, ozs, minutes, gravity, gallons);
 
-            Assert.IsAssignableFrom<BitternessType>(result.Type);
-            Assert.True(result.Type == BitternessType.Ibu);
             Assert.True(result.Value >= 20.73m);
             Assert.True(result.Value <= 20.74m);
         }
