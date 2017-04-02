@@ -234,22 +234,5 @@ namespace BeerMath
 
             return (Ibu * BalanceIBURatio) / realTerminalExtract;
         }
-
-        /// <summary>
-        /// Calculates the HBU (Homebrew Bittering Units).
-        /// </summary>
-        /// <param name="alphaAcidRating">
-        /// A <see cref="System.Decimal"/> representing the alpha acid rating of the hops.
-        /// </param>
-        /// <param name="massHops">
-        /// A <see cref="System.Decimal"/> representing the mass in ounces or grams of the hops.
-        /// </param>
-        /// <returns>
-        /// A <see cref="Bitterness"/> representing the HBU of the hops.
-        /// </returns>
-        public static Bitterness CalculateHbus(decimal AlphaAcidRating, decimal HopsOz)
-        {
-            return new Bitterness(AlphaAcidRating * HopsOz, BitternessType.Hbu);
-        }
     }
 }

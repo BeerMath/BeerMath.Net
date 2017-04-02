@@ -88,10 +88,8 @@ namespace Tests
         {
             decimal alpha = 6.0m;
             decimal hopsOz = 1.0m;
-            Bitterness result = Hops.CalculateHbus(alpha, hopsOz);
+            var result = Hbu.FromHopsBill(alpha, hopsOz);
 
-            Assert.IsAssignableFrom<BitternessType>(result.Type);
-            Assert.True(result.Type == BitternessType.Hbu);
             Assert.True(result.Value == 6.0m);
         }
     }
