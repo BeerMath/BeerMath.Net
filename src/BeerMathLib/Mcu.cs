@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BeerMath
 {
-	/// <summary>
-	/// Malt Color Units
-	/// </summary>
+    /// <summary>
+    /// Malt Color Units
+    /// </summary>
     public class Mcu
-	{
+    {
         /// <summary>the color in MCUs</summary>
         public decimal Value { get; private set; }
 

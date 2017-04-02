@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BeerMath
 {
-	/// <summary>
-	/// European Brewery Convention color
-	/// </summary>
+    /// <summary>
+    /// European Brewery Convention color
+    /// </summary>
     public class Ebc
-	{
+    {
         /// <summary>the color in EBC</summary>
         public decimal Value { get; private set; }
 
@@ -34,7 +34,7 @@ namespace BeerMath
 
         // Conversion constant
         // https://en.wikipedia.org/wiki/Standard_Reference_Method#EBC
-		private const decimal ToEbcConversionFactor = 1.97m;
-		private const decimal ToSrmConversionFactor = 0.508m;
+        private const decimal ToEbcConversionFactor = 1.97m;
+        private const decimal ToSrmConversionFactor = 0.508m;
     }
 }

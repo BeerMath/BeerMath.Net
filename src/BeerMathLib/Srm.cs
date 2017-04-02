@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BeerMath
 {
-	/// <summary>
-	/// Standard Reference Method
-	/// </summary>
+    /// <summary>
+    /// Standard Reference Method
+    /// </summary>
     public class Srm
-	{
+    {
         /// <summary>the color in SRM</summary>
         public decimal Value { get; private set; }
 
@@ -38,7 +38,7 @@ namespace BeerMath
 
         // Morey's constants
         // http://www.brewwiki.com/index.php/Estimating_Color
-		private const double MoreySrmFactor = 1.4922;
-		private const double MoreySrmExponent = 0.6859;
+        private const double MoreySrmFactor = 1.4922;
+        private const double MoreySrmExponent = 0.6859;
     }
 }
