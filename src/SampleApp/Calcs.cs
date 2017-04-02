@@ -5,75 +5,75 @@ namespace BeerMath.Sample.Console
 {
 
 
-	public class Calcs
-	{
+    public class Calcs
+    {
 
-		public Calcs ()
-		{
-		}
+        public Calcs ()
+        {
+        }
 
-		private static decimal PromptDecimal(string text)
-		{
-			System.Console.Write(text);
-			System.Console.Write(" >");
-			return decimal.Parse(System.Console.ReadLine());
-		}
+        private static decimal PromptDecimal(string text)
+        {
+            System.Console.Write(text);
+            System.Console.Write(" >");
+            return decimal.Parse(System.Console.ReadLine());
+        }
 
-		public static void McuTest()
-		{
-			decimal lbsGrain = PromptDecimal("Pounds of grain");
-        		decimal degLovibond = PromptDecimal("Degrees Lovibond");
-        		decimal totalVolume = PromptDecimal("Total volume");
+        public static void McuTest()
+        {
+            decimal lbsGrain = PromptDecimal("Pounds of grain");
+            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal totalVolume = PromptDecimal("Total volume");
 
-            decimal MCUs = Malt.CalculateMcu(lbsGrain, degLovibond, totalVolume);
+            var MCUs = Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume);
 
-		    System.Console.WriteLine(String.Format("MCUs = {0}", MCUs));
-		}
+            System.Console.WriteLine($"MCUs = {MCUs.Value}");
+        }
 
-		public static void SrmTest()
-		{
-			decimal lbsGrain = PromptDecimal("Pounds of grain");
-        		decimal degLovibond = PromptDecimal("Degrees Lovibond");
-        		decimal totalVolume = PromptDecimal("Total volume");
+        public static void SrmTest()
+        {
+            decimal lbsGrain = PromptDecimal("Pounds of grain");
+            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal totalVolume = PromptDecimal("Total volume");
 
-            decimal SRM = Malt.CalculateSrm(lbsGrain, degLovibond, totalVolume);
+            var SRM = Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume));
 
-		    System.Console.WriteLine(String.Format("SRM = {0}", SRM));
-		}
+            System.Console.WriteLine($"SRM = {SRM.Value}");
+        }
 
-		public static void EbcTest()
-		{
-			decimal lbsGrain = PromptDecimal("Pounds of grain");
-        		decimal degLovibond = PromptDecimal("Degrees Lovibond");
-        		decimal totalVolume = PromptDecimal("Total volume");
+        public static void EbcTest()
+        {
+            decimal lbsGrain = PromptDecimal("Pounds of grain");
+            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal totalVolume = PromptDecimal("Total volume");
 
-            decimal EBC = Malt.CalculateEbc(lbsGrain, degLovibond, totalVolume);
+            var EBC = Ebc.FromSrm(Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume)));
 
-		    System.Console.WriteLine(String.Format("EBC = {0}", EBC));
-		}
+            System.Console.WriteLine($"EBC = {EBC.Value}");
+        }
 
-		public static void IbuTest()
-		{
-			decimal alphaAcid = PromptDecimal("Alpha acid %");
-			decimal hopsOzs = PromptDecimal("Ounces of hops");
-			decimal boilMinutes = PromptDecimal("Minutes of boil time");
+        public static void IbuTest()
+        {
+            decimal alphaAcid = PromptDecimal("Alpha acid %");
+            decimal hopsOzs = PromptDecimal("Ounces of hops");
+            decimal boilMinutes = PromptDecimal("Minutes of boil time");
 
-			decimal IBU = Hops.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
+            decimal IBU = Hops.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
 
-			System.Console.WriteLine(String.Format("IBUs = {0}", IBU));
-		}
+            System.Console.WriteLine(String.Format("IBUs = {0}", IBU));
+        }
 
-		public static void TinsethTest()
-		{
-			decimal alphaAcid = PromptDecimal("Alpha acid %");
-			decimal hopsOzs = PromptDecimal("Ounces of hops");
-			decimal boilMinutes = PromptDecimal("Minutes of boil time");
-			Gravity gravity = new Gravity(PromptDecimal("Gravity points of wort"));
-			decimal gallons = PromptDecimal("Gallons of wort");
+        public static void TinsethTest()
+        {
+            decimal alphaAcid = PromptDecimal("Alpha acid %");
+            decimal hopsOzs = PromptDecimal("Ounces of hops");
+            decimal boilMinutes = PromptDecimal("Minutes of boil time");
+            Gravity gravity = new Gravity(PromptDecimal("Gravity points of wort"));
+            decimal gallons = PromptDecimal("Gallons of wort");
 
-			decimal IBU = Hops.CalculateIbusTinseth(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
+            decimal IBU = Hops.CalculateIbusTinseth(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
 
-			System.Console.WriteLine(String.Format("IBUs = {0}", IBU));
-		}
-	}
+            System.Console.WriteLine(String.Format("IBUs = {0}", IBU));
+        }
+    }
 }

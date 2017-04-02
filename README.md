@@ -11,6 +11,7 @@ Version 0.4 of BeerMath.net has several types of calculations:
 The current API basically sucks, so version 0.5 will refactor that pretty severely.
 
 ## Why decimal everywhere?
+*Note: I'm currently re-thinking this, as we're not dealing with the kind of precision which would make decimals necessary. System.Math is pushing calculations through doubles anyhow.*
 BeerMath is designed around decimal values for two reasons.
 One, casting to decimal is a widening conversion.
 That is, anything the other numeric types can store, decimal can store with at least as much precision.
@@ -23,31 +24,27 @@ However, the computations in BeerMath are not time-critical, and the amount of m
 
 ## Practical use of BeerMath.net
 I'll demonstrate the wort color APIs in this sample.
-All BeerMath.net routines have XML documentation, so your IDE of choice should tell you how the other APIs work.
-
-All the interesting functionality is contained in the BeerMath namespace.
-This documentation assumes you're "using BeerMath;" everywhere.
+<strike>All BeerMath.net routines have XML documentation, so your IDE of choice should tell you how the other APIs work.</strike>
+Other APIs need to be documented.
 
 Suppose you're writing an app that needs to calculate the color of an American pale ale wort.
 Our 5-gallon recipe will include 10lbs of American 2-row (1L, or 1 Lovibond), 1lb of Crystal 15L, and 0.25lb of Crystal 125L for complexity.
-To calculate the color in SRM of this wort, we'll write:
+First we get the malt color units for the recipe:
 
 ```csharp
-BeerColor color1 = Malt.CalculateSrm( 10,   1, 5);
-BeerColor color2 = Malt.CalculateSrm(  1,  15, 5);
-BeerColor color3 = Malt.CalculateSrm(.25, 125, 5);
-Console.WriteLine("Color = {0} SRM", color1+color2+color3);
+using BeerMath;
+
+// TODO: decide whether to support this syntax
+var color1 = Mcu.FromGrainBill(10.lbs(), 1.lovibond(), 5.gallons());
+var color2 = Mcu.FromGrainBill(Lbs: 1, Lovibond: 15, Gallons: 5);
+var color3 = Mcu.FromGrainBill(.25, 125, 5);
+var sumColor = color1 + color2 + color3;
 ```
 
-(Yes, this suggests an obvious improvement to BeerMath -- arithmetic operators on the strong types.)
-
-If instead, we wanted the color in MCU, we could have written:
+Then we can estimate the SRM of the final beer:
 
 ```csharp
-BeerColor color1 = Malt.CalculateMcu( 10,   1, 5);
-BeerColor color2 = Malt.CalculateMcu(  1,  15, 5);
-BeerColor color3 = Malt.CalculateMcu(.25, 125, 5);
-Console.WriteLine("Color = {0} MCU", color1+color2+color3);
+var beerColor = Srm.EstimateMorey(sumColor);
 ```
 
 ## Handling exceptions
