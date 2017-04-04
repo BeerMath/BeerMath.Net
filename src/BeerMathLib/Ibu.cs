@@ -53,6 +53,13 @@ namespace BeerMath
         // private constructor so consumers cannot create
         private Ibu() { }
 
+        internal static Ibu FromDecimal(decimal raw)
+        {
+            return new Ibu() {
+                Value = raw,
+            };
+        }
+
         private static decimal StandardUtilization (decimal BoilMinutes)
         {
             /*

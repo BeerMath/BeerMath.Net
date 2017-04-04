@@ -64,10 +64,8 @@ namespace Tests
             decimal desiredIBU = 20m;
             decimal elevation = 550m;
 
-            Bitterness result = Hops.CalculateIbusGaretz(alpha, ozs, finalVolume, boilVolume, gravity, minutes, desiredIBU, elevation);
+            var result = Garetz.CalculateIbus(alpha, ozs, finalVolume, boilVolume, gravity, minutes, desiredIBU, elevation);
 
-            Assert.IsAssignableFrom<BitternessType>(result.Type);
-            Assert.True(result.Type == BitternessType.Ibu);
             Assert.True(result.Value <= 15.9m);
             Assert.True(result.Value >= 15.8m);
         }
