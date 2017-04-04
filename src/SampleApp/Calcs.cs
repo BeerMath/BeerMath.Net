@@ -3,15 +3,8 @@ using BeerMath;
 
 namespace BeerMath.Sample.Console
 {
-
-
     public class Calcs
     {
-
-        public Calcs ()
-        {
-        }
-
         private static decimal PromptDecimal(string text)
         {
             System.Console.Write(text);
@@ -58,9 +51,9 @@ namespace BeerMath.Sample.Console
             decimal hopsOzs = PromptDecimal("Ounces of hops");
             decimal boilMinutes = PromptDecimal("Minutes of boil time");
 
-            decimal IBU = Hops.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
+            var IBU = StandardBitterness.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
 
-            System.Console.WriteLine(String.Format("IBUs = {0}", IBU));
+            System.Console.WriteLine($"IBUs = {IBU.Value}");
         }
 
         public static void TinsethTest()
@@ -71,9 +64,9 @@ namespace BeerMath.Sample.Console
             Gravity gravity = new Gravity(PromptDecimal("Gravity points of wort"));
             decimal gallons = PromptDecimal("Gallons of wort");
 
-            decimal IBU = Hops.CalculateIbusTinseth(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
+            var IBU = Tinseth.CalculateIbus(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
 
-            System.Console.WriteLine(String.Format("IBUs = {0}", IBU));
+            System.Console.WriteLine($"IBUs = {IBU.Value}");
         }
     }
 }
