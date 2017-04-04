@@ -5,19 +5,6 @@ namespace BeerMath
     public sealed class Hops
     {
 
-        /// <summary>
-        /// Constants related to Jackie Rager's IBU methods.
-        /// http://www.realbeer.com/hops/FAQ.html#units
-        /// </summary>
-        #region Rager constants
-        public const decimal RagerGravityAdjustmentMinimum        = 1.050m;
-        public const decimal RagerGravityConstantDivisor        = 0.2m;
-        public const decimal RagerUtilizationBoilTimeAdjustment = 31.32m;
-        public const decimal RagerUtilizationBoilTimeDivisor    = 18.27m;
-        public const decimal RagerUtilizationBoilTimeMultiplier = 13.86m;
-        public const decimal RagerUtilizationBoilTimeAdditive    = 18.11m;
-        public const decimal RagerMetricConversionFactor        = 7462m;
-        #endregion
 
         /// <summary>
         /// Constants related to Mark Garetz's IBU methods.
@@ -41,69 +28,6 @@ namespace BeerMath
         public const decimal BalanceOriginalGravityRatio        = 0.18m;
         public const decimal BalanceIBURatio                    = 0.8m;
         #endregion
-
-        /// <summary>
-        /// Calculates the IBU a sample of hops in the batch by the Rager method.
-        /// </summary>
-        /// <param name="AlphaAcidRating">
-        /// A <see cref="System.Decimal"/> representing alpha acid rating of the hops. Represented like 6.0 not 0.060.
-        /// </param>
-        /// <param name="HopsOz">
-        /// A <see cref="System.Decimal"/> representing mass in ounces or grams of the hops.
-        /// </param>
-        /// <param name="Volume">
-        /// A <see cref="System.Decimal"/> representing final volume of the batch.
-        /// </param>
-        /// <param name="WortGravity">
-        /// A <see cref="Gravity"/> representing gravity of the wort.
-        /// </param>
-        /// <param name="BoilTimeMinutes">
-        /// A <see cref="System.Decimal"/> representing time the sample of hops is allowed to boil in the wort.
-        /// </param>
-        /// <returns>
-        /// A <see cref="Bitterness"/>
-        /// </returns>
-        public static Bitterness CalculateIbusRager(decimal AlphaAcidRating, decimal HopsOz, decimal Volume,
-            Gravity WortGravity, decimal BoilTimeMinutes)
-        {
-            decimal GravityAdjustment = 0;
-
-            // According to Rager, if the gravity of the wort exceeds 1.050, there needs to be a gravity adjustment in the equation.
-            if (WortGravity.Value > RagerGravityAdjustmentMinimum)
-            {
-                GravityAdjustment = _RagerGravityAdjustment(WortGravity, GravityAdjustment);
-            }
-
-            // Alpha acid utilization.
-            decimal Utilization = _RagerUtilization(BoilTimeMinutes);
-
-            // Convert utilization and alpha acid to percentage
-            Utilization = Utilization / 100m;
-            AlphaAcidRating = AlphaAcidRating / 100m;
-
-            return new Bitterness(
-                        (HopsOz
-                            * Utilization
-                            * AlphaAcidRating
-                            * RagerMetricConversionFactor)
-                        / (Volume
-                            * (1 + GravityAdjustment)),
-                BitternessType.Ibu);
-        }
-
-        private static decimal _RagerGravityAdjustment(Gravity WortGravity, decimal GravityAdjustment)
-        {
-            GravityAdjustment = (WortGravity.Value - RagerGravityAdjustmentMinimum) / RagerGravityConstantDivisor;
-            return GravityAdjustment;
-        }
-
-        private static decimal _RagerUtilization(decimal BoilTimeMinutes)
-        {
-            decimal Utilization = RagerUtilizationBoilTimeAdditive +
-                         (RagerUtilizationBoilTimeMultiplier *
-                             (decimal)Math.Tanh((double)((BoilTimeMinutes - RagerUtilizationBoilTimeAdjustment) / RagerUtilizationBoilTimeDivisor)));
-            return Utilization;
-        }
 
         /// <summary>
         /// Calculates the IBU a sample of hops in the batch by the Garetz method.

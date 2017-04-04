@@ -25,6 +25,31 @@ namespace BeerMath
             };
         }
 
+        // TODO: move this logic to Rager.cs
+        public static Ibu FromRager(decimal AlphaAcidRating, decimal Oz, decimal Volume,
+            Gravity WortGravity, decimal BoilMinutes)
+        {
+            decimal GravityAdjustment = 0;
+
+            // According to Rager, if the gravity of the wort exceeds 1.050, there needs to be a gravity adjustment in the equation.
+            if (WortGravity.Value > Rager.Gravity.AdjustmentMinimum)
+            {
+                GravityAdjustment = Rager.AdjustGravity(WortGravity);
+            }
+
+            // Alpha acid utilization.
+            decimal Utilization = Rager.CalculateUtilization(BoilMinutes);
+
+            // Convert utilization and alpha acid to percentage
+            Utilization = Utilization / 100m;
+            AlphaAcidRating = AlphaAcidRating / 100m;
+
+            return new Ibu() {
+                Value = (Oz * Utilization * AlphaAcidRating * Rager.MetricConversionFactor)
+                        / (Volume * (1 + GravityAdjustment)),
+            };
+        }
+
         // private constructor so consumers cannot create
         private Ibu() { }
 

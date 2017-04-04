@@ -38,7 +38,7 @@ namespace Tests
         }
 
         [Fact]
-        public void IbuRagerCase()
+        public void IbuFromRager()
         {
             decimal alpha = 6.0m;
             decimal ozs = 1.0m;
@@ -46,10 +46,8 @@ namespace Tests
             Gravity gravity = new Gravity(50m);
             decimal gallons = 5m;
 
-            Bitterness result = Hops.CalculateIbusRager(alpha, ozs, gallons, gravity, minutes);
+            var result = Ibu.FromRager(alpha, ozs, gallons, gravity, minutes);
 
-            Assert.IsAssignableFrom<BitternessType>(result.Type);
-            Assert.True(result.Type == BitternessType.Ibu);
             Assert.True(result.Value >= 27.59m);
             Assert.True(result.Value <= 27.60m);
         }

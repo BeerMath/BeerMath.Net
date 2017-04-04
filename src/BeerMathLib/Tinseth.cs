@@ -2,9 +2,9 @@ using System;
 
 namespace BeerMath
 {
-    // http://realbeer.com/hops/research.html
     /// <summary>
     /// Constants related to Glenn Tinseth's IBU methods
+    /// http://realbeer.com/hops/research.html
     /// </summary>
     internal static class Tinseth
     {
