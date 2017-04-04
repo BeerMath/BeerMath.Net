@@ -13,7 +13,7 @@ namespace Tests
             decimal ozs = 1.0m;
             decimal minutes = 60m;
 
-            var result = Ibu.FromStandard(alpha, ozs, minutes);
+            var result = StandardBitterness.CalculateIbus(alpha, ozs, minutes);
 
             Assert.True(result.Value >= 24.82m);
             Assert.True(result.Value <= 24.83m);
@@ -28,7 +28,7 @@ namespace Tests
             Gravity gravity = new Gravity(50m);
             decimal gallons = 5m;
 
-            var result = Ibu.FromTinseth(alpha, ozs, minutes, gravity, gallons);
+            var result = Tinseth.CalculateIbus(alpha, ozs, minutes, gravity, gallons);
 
             Assert.True(result.Value >= 20.73m);
             Assert.True(result.Value <= 20.74m);
@@ -43,7 +43,7 @@ namespace Tests
             Gravity gravity = new Gravity(50m);
             decimal gallons = 5m;
 
-            var result = Ibu.FromRager(alpha, ozs, gallons, gravity, minutes);
+            var result = Rager.CalculateIbus(alpha, ozs, gallons, gravity, minutes);
 
             Assert.True(result.Value >= 27.59m);
             Assert.True(result.Value <= 27.60m);

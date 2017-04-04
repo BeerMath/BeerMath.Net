@@ -6,7 +6,7 @@ namespace BeerMath
     /// Constants related to Jackie Rager's IBU methods.
     /// http://www.realbeer.com/hops/FAQ.html#units
     /// </summary>
-    internal static class Rager
+    public static class Rager
     {
         internal static class Gravity {
             public const decimal AdjustmentMinimum = 1.050m;
@@ -21,6 +21,30 @@ namespace BeerMath
         }
 
         public const decimal MetricConversionFactor = 7462m;
+
+        public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, decimal Volume,
+            BeerMath.Gravity WortGravity, decimal BoilMinutes)
+        {
+            decimal GravityAdjustment = 0;
+
+            // According to Rager, if the gravity of the wort exceeds 1.050, there needs to be a gravity adjustment in the equation.
+            if (WortGravity.Value > Rager.Gravity.AdjustmentMinimum)
+            {
+                GravityAdjustment = Rager.AdjustGravity(WortGravity);
+            }
+
+            // Alpha acid utilization.
+            decimal Utilization = Rager.CalculateUtilization(BoilMinutes);
+
+            // Convert utilization and alpha acid to percentage
+            Utilization = Utilization / 100m;
+            AlphaAcidRating = AlphaAcidRating / 100m;
+
+            return Ibu.FromDecimal(
+                (Oz * Utilization * AlphaAcidRating * Rager.MetricConversionFactor)
+                / (Volume * (1 + GravityAdjustment))
+            );
+        }
 
         internal static decimal AdjustGravity(BeerMath.Gravity WortGravity)
         {

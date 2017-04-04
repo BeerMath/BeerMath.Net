@@ -51,7 +51,7 @@ namespace BeerMath.Sample.Console
             decimal hopsOzs = PromptDecimal("Ounces of hops");
             decimal boilMinutes = PromptDecimal("Minutes of boil time");
 
-            var IBU = Ibu.FromStandard(alphaAcid, hopsOzs, boilMinutes);
+            var IBU = StandardBitterness.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
 
             System.Console.WriteLine($"IBUs = {IBU.Value}");
         }
@@ -64,7 +64,7 @@ namespace BeerMath.Sample.Console
             Gravity gravity = new Gravity(PromptDecimal("Gravity points of wort"));
             decimal gallons = PromptDecimal("Gallons of wort");
 
-            var IBU = Ibu.FromTinseth(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
+            var IBU = Tinseth.CalculateIbus(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
 
             System.Console.WriteLine($"IBUs = {IBU.Value}");
         }
