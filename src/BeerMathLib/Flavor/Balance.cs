@@ -8,11 +8,9 @@ namespace BeerMath
         /// Constants related to the calculation of the balance ratio.
         /// http://beercolor.netfirms.com/balance.html
         /// </summary>
-        #region Beer balance constants
-        public const decimal BalanceFinalGravityRatio            = 0.82m;
-        public const decimal BalanceOriginalGravityRatio        = 0.18m;
-        public const decimal BalanceIBURatio                    = 0.8m;
-        #endregion
+        public const decimal FinalGravityRatio = 0.82m;
+        public const decimal OriginalGravityRatio = 0.18m;
+        public const decimal IbuRatio = 0.8m;
 
         /// <summary>
         /// Calculates the balance (BU:GU) or bittering units to gravity units of the batch.
@@ -37,10 +35,10 @@ namespace BeerMath
             {
                 throw new ArgumentException("finalGravity and originalGravity must not be 0.");
             }
-            decimal realTerminalExtract = (BalanceFinalGravityRatio * FinalGravity.Points)
-                + (BalanceOriginalGravityRatio * OriginalGravity.Points);
+            decimal realTerminalExtract = (Balance.FinalGravityRatio * FinalGravity.Points)
+                + (Balance.OriginalGravityRatio * OriginalGravity.Points);
 
-            return (Bitterness.Value * BalanceIBURatio) / realTerminalExtract;
+            return (Bitterness.Value * Balance.IbuRatio) / realTerminalExtract;
         }
     }
 }
