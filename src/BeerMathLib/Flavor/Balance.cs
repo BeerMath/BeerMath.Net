@@ -2,7 +2,7 @@ using System;
 
 namespace BeerMath
 {
-    public sealed class Hops
+    public sealed class Balance
     {
         /// <summary>
         /// Constants related to the calculation of the balance ratio.
@@ -25,21 +25,22 @@ namespace BeerMath
         /// A <see cref="Gravity"/> representing the original gravity of the batch.
         /// This should be a value in whole numbers, like 40 instead of 1.040.
         /// </param>
-        /// <param name="Ibu">
-        /// A <see cref="Bitterness"/> representing the IBU of the batch.
+        /// <param name="Bitterness">
+        /// <see cref="Ibu"/>s of the batch.
         /// </param>
         /// <returns>
         /// A <see cref="System.Decimal"/> BU:GU ratio value.
         /// </returns>
-        public static decimal CalculateBalanceRatio(Gravity FinalGravity, Gravity OriginalGravity, Bitterness Ibu)
+        public static decimal CalculateBalanceRatio(Gravity FinalGravity, Gravity OriginalGravity, Ibu Bitterness)
         {
             if (FinalGravity == Gravity.Zero && OriginalGravity == Gravity.Zero)
             {
-                throw new BeerMathException("finalGravity and originalGravity must not be 0.");
+                throw new ArgumentException("finalGravity and originalGravity must not be 0.");
             }
-            decimal realTerminalExtract = (BalanceFinalGravityRatio * FinalGravity.Points) + (BalanceOriginalGravityRatio * OriginalGravity.Points);
+            decimal realTerminalExtract = (BalanceFinalGravityRatio * FinalGravity.Points)
+                + (BalanceOriginalGravityRatio * OriginalGravity.Points);
 
-            return (Ibu * BalanceIBURatio) / realTerminalExtract;
+            return (Bitterness.Value * BalanceIBURatio) / realTerminalExtract;
         }
     }
 }
