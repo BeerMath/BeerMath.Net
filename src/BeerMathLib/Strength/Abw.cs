@@ -6,29 +6,27 @@ namespace BeerMath
     /// <summary>
     /// Alcohol by weight
     /// </summary>
-    public sealed class Abw : AlcoholStrength
+    public sealed class Abw
     {
-        private decimal _Value;
+        public decimal Value { get; private set; }
 
-        public Abw ()
+        private Abw () { }
+
+        public static Abw FromDecimal(decimal raw)
         {
-            _Value = 0;
+            return new Abw() {
+                Value = raw,
+            };
         }
 
-        public Abw(decimal Value)
+        public static Abw FromOgFg (Gravity OriginalGravity, Gravity FinalGravity)
         {
-            _Value = Value;
+            return new Abw
+            {
+                Value = (AbwMagicNumber * Abv.FromOgFg(OriginalGravity, FinalGravity).Value) / FinalGravity.Value,
+            };
         }
 
-        public override decimal Value
-        {
-            get { return _Value; }
-        }
-
-        public override AlcoholStrengthType Type
-        {
-            get { return AlcoholStrengthType.Abw; }
-        }
-
+        private const decimal AbwMagicNumber = 0.79m;
     }
 }
