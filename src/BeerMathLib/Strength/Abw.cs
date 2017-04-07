@@ -12,11 +12,9 @@ namespace BeerMath
 
         private Abw () { }
 
-        public static Abw FromDecimal(decimal raw)
+        public Abw(decimal raw)
         {
-            return new Abw() {
-                Value = raw,
-            };
+            Value = raw;
         }
 
         public static Abw FromOgFg (SpecificGravity OriginalGravity, SpecificGravity FinalGravity)

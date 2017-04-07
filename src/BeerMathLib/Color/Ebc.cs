@@ -24,9 +24,7 @@ namespace BeerMath
 
         public Srm ToSrm
         {
-            get {
-                return Srm.FromDecimal(this.Value * ToSrmConversionFactor);
-            }
+            get => Srm.FromDecimal(this.Value * ToSrmConversionFactor);
         }
 
         // private constructor so no one can create this directly
