@@ -26,7 +26,7 @@ namespace Tests
             decimal ozs = 1.0m;
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var result = Tinseth.CalculateIbus(alpha, ozs, minutes, gravity, gallons);
 
@@ -41,7 +41,7 @@ namespace Tests
             decimal ozs = 1.0m;
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var result = Rager.CalculateIbus(alpha, ozs, gallons, gravity, minutes);
 
@@ -56,8 +56,8 @@ namespace Tests
             decimal ozs = 1.0m;
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
-            decimal finalVolume = 5m;
-            decimal boilVolume = 6.0m;
+            Gallon finalVolume = new Gallon(5m);
+            Gallon boilVolume = new Gallon(6.0m);
             decimal desiredIBU = 20m;
             decimal elevation = 550m;
 
