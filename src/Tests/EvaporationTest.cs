@@ -8,37 +8,37 @@ namespace Tests
     {
 
         [Fact]
-        public void NormalCase ()
+        public void Standard ()
         {
-            decimal wort = 6m;
+            Gallon wort = new Gallon(6m);
             decimal boil = 60m;
 
-            decimal result = Evaporation.CalculateLoss(wort, boil);
+            var result = Evaporation.CalculateLoss(wort, boil);
 
-            Assert.True(result >= 0.599m);
-            Assert.True(result <= 0.61m);
+            Assert.True(result.Value >= 0.599m);
+            Assert.True(result.Value <= 0.61m);
         }
 
         [Fact]
-        public void CustomCase ()
+        public void Custom ()
         {
-            decimal wort = 6m;
+            Gallon wort = new Gallon(6m);
             decimal boil = 60m;
             decimal rate = 0.2m;
 
-            decimal result = Evaporation.CalculateLoss(wort, boil, rate);
+            var result = Evaporation.CalculateLoss(wort, boil, rate);
 
-            Assert.True(result >= 1.199m);
-            Assert.True(result <= 1.21m);
+            Assert.True(result.Value >= 1.199m);
+            Assert.True(result.Value <= 1.21m);
         }
 
         [Fact]
         public void RateCase ()
         {
-            decimal pre = 5m;
-            decimal post = 4m;
+            Gallon pre = new Gallon(5m);
+            Gallon post = new Gallon(4m);
 
-            decimal result = Evaporation.CalculateRate(pre, post);
+            var result = Evaporation.CalculateRate(pre, post);
 
             Assert.True(result >= 0.249m);
             Assert.True(result <= 0.26m);
