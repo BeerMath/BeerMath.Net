@@ -40,7 +40,7 @@ namespace BeerMath
             Utilization = Utilization / 100m;
             AlphaAcidRating = AlphaAcidRating / 100m;
 
-            return Ibu.FromDecimal(
+            return new Ibu(
                 (Oz * Utilization * AlphaAcidRating * Rager.MetricConversionFactor)
                 / (BoilVolume.Value * (1 + GravityAdjustment))
             );

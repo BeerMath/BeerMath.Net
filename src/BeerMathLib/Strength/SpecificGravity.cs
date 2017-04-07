@@ -87,15 +87,16 @@ namespace BeerMath
         /// <param name="OriginalGravity">
         /// The original <see cref="SpecificGravity"/> contribution of the grain.
         /// </param>
-        /// <param name="ApparentAttenuation">
-        /// A <see cref="System.Decimal"/> representing the apparent attenuation.
-        /// </param>
         /// <returns>
         /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static SpecificGravity FinalGravityOfFermentable(SpecificGravity OriginalGravity, decimal ApparentAttenuation)
+        public static SpecificGravity FinalGravityOfFermentable(SpecificGravity OriginalGravity, Attenuation apparent)
         {
-            return SpecificGravity.FromPoints(OriginalGravity.Points * (1.0m - ApparentAttenuation));
+            if (apparent.Type != Attenuation.AttenuationType.Apparent)
+            {
+                throw new ArgumentException($"Expected an apparent attenuation; got {apparent.Type.ToString()}");
+            }
+            return SpecificGravity.FromPoints(OriginalGravity.Points * (1.0m - apparent.Value));
         }
 
         /// <summary>
@@ -113,17 +114,14 @@ namespace BeerMath
         /// <param name="Volume">
         /// A <see cref="BeerMath.Gallon"/> representing the total volume of the batch in gallons.
         /// </param>
-        /// <param name="ApparentAttenuation">
-        /// A <see cref="System.Decimal"/> representing the apparent attenuation.
-        /// </param>
         /// <returns>
         /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
         public static SpecificGravity FinalGravityOfFermentable(decimal GrainLbs, decimal ExtractPPG, decimal ExtractEfficiency,
-            Gallon Volume, decimal ApparentAttenuation)
+            Gallon Volume, Attenuation apparent)
         {
             return FinalGravityOfFermentable(OriginalGravityOfFermentable(GrainLbs, ExtractPPG, ExtractEfficiency, Volume),
-                ApparentAttenuation);
+                apparent);
         }
 
         /// <summary>

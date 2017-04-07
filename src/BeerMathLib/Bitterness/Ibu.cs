@@ -9,9 +9,9 @@ namespace BeerMath
         // private constructor so consumers cannot create
         private Ibu() { }
 
-        public static Ibu FromDecimal(decimal raw)
+        public Ibu(decimal raw)
         {
-            return new Ibu() { Value = raw };
+            Value = raw;
         }
     }
 }

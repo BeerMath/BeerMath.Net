@@ -58,10 +58,10 @@ namespace Tests
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon finalVolume = new Gallon(5m);
             Gallon boilVolume = new Gallon(6.0m);
-            decimal desiredIBU = 20m;
+            Ibu desired = new Ibu(20m);
             decimal elevation = 550m;
 
-            var result = Garetz.CalculateIbus(alpha, ozs, finalVolume, boilVolume, gravity, minutes, desiredIBU, elevation);
+            var result = Garetz.CalculateIbus(alpha, ozs, finalVolume, boilVolume, gravity, minutes, desired, elevation);
 
             Assert.True(result.Value <= 15.9m);
             Assert.True(result.Value >= 15.8m);

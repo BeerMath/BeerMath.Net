@@ -17,7 +17,7 @@ namespace BeerMath
         public static Ibu CalculateIbus(decimal AlphaAcid, decimal Ozs, decimal BoilMinutes, SpecificGravity Gravity, Gallon Wort)
         {
             // IBUs = (Boil Time Factor * Bigness Factor) * (mg/l of added alpha acids)
-            return Ibu.FromDecimal(
+            return new Ibu(
                 BoilTimeFactor(BoilMinutes)
                 * BignessFactor(Gravity)
                 * MgAlphaAcids(AlphaAcid, Ozs, Wort)

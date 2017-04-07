@@ -27,7 +27,7 @@ namespace Tests
             decimal extractPPG = 37m;
             decimal extractEfficiency = 0.75m;
             Gallon volume = new Gallon(5m);
-            decimal apparentAttenuation = 0.79m;
+            Attenuation apparentAttenuation = Attenuation.FromRaw(0.79m, Attenuation.AttenuationType.Apparent);
 
             var result = SpecificGravity.FinalGravityOfFermentable(grainLbs, extractPPG, extractEfficiency, volume, apparentAttenuation);
 
