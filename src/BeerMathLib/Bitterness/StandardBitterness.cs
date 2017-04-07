@@ -8,7 +8,7 @@ namespace BeerMath
 
         public static Ibu CalculateIbus(decimal AlphaAcid, decimal HopsOzs, decimal BoilMinutes)
         {
-            return Ibu.FromDecimal(
+            return new Ibu(
                 (AlphaAcid * HopsOzs * StandardUtilization(BoilMinutes))
                 / StandardBitterness.MagicNumber
             );

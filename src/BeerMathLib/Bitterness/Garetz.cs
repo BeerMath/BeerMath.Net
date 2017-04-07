@@ -67,7 +67,7 @@ namespace BeerMath
             decimal CombinedAdjustments = GravityFactor * HoppingRateFactor * TemperatureFactor;
             decimal Utilization = Garetz.Utilization(BoilTimeMinutes);
 
-            return Ibu.FromDecimal(
+            return new Ibu(
                 (Utilization * AlphaAcidRating * Oz * MetricConversionFactor)
                 / (FinalVolume.Value * CombinedAdjustments));
         }
