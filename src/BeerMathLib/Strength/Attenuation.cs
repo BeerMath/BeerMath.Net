@@ -4,8 +4,8 @@ namespace BeerMath
 {
     public class Attenuation
     {
-        public decimal Value;
-        public AttenuationType Type;
+        public decimal Value { get; private set; }
+        public AttenuationType Type { get; private set; }
 
         public enum AttenuationType
         {
@@ -23,15 +23,15 @@ namespace BeerMath
         /// attenuation.
         /// </summary>
         /// <param name="OriginalGravity">
-        /// A <see cref="Gravity"/>
+        /// A <see cref="SpecificGravity"/>
         /// </param>
         /// <param name="FinalGravity">
-        /// A <see cref="Gravity"/>
+        /// A <see cref="SpecificGravity"/>
         /// </param>
         /// <returns>
         /// A <see cref="System.Decimal"/>
         /// </returns>
-        public static Attenuation Apparent(Gravity OriginalGravity, Gravity FinalGravity)
+        public static Attenuation Apparent(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
         {
             //Apparent Attenuation % = ((OG-1)-(FG-1)) / (OG-1) x 100
             return new Attenuation() {
@@ -47,15 +47,15 @@ namespace BeerMath
         /// fermented.  The real attenuation will always be a lower number than the apparent attenuation.
         /// </summary>
         /// <param name="OriginalGravity">
-        /// A <see cref="Gravity"/>
+        /// A <see cref="SpecificGravity"/>
         /// </param>
         /// <param name="FinalGravity">
-        /// A <see cref="Gravity"/>
+        /// A <see cref="SpecificGravity"/>
         /// </param>
         /// <returns>
         /// A <see cref="System.Decimal"/>
         /// </returns>
-        public static Attenuation Real(Gravity OriginalGravity, Gravity FinalGravity)
+        public static Attenuation Real(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
         {
             //Real Attenuation = Apparent Attenuation * 0.81
             var attenuation = Attenuation.Apparent(OriginalGravity, FinalGravity);

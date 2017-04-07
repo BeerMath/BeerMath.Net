@@ -19,7 +19,7 @@ namespace BeerMath
             };
         }
 
-        public static Abv FromOgFg(Gravity OriginalGravity, Gravity FinalGravity)
+        public static Abv FromOgFg(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
         {
             return new Abv()
             {

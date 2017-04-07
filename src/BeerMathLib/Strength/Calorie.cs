@@ -13,10 +13,10 @@ namespace BeerMath
 
         private Calorie () { }
 
-        public static Calorie FromOgFg(Gravity OriginalGravity, Gravity FinalGravity)
+        public static Calorie FromOgFg(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
         {
             Abw abw = Abw.FromOgFg(OriginalGravity, FinalGravity);
-            Gravity realExtract = Malt.CalculateRealExtract(OriginalGravity, FinalGravity);
+            SpecificGravity realExtract = SpecificGravity.FromRealExtract(OriginalGravity, FinalGravity);
             return new Calorie() {
                 Value = ((Calorie.AbwMultiplier * abw.Value)
                     + (Calorie.AbwRealExtractSum * (realExtract.Plato - Calorie.RealExtractSubtraction)))

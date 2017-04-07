@@ -10,11 +10,6 @@ namespace BeerMath
     /// </summary>
     public sealed class Malt
     {
-        #region Gravity Constants
-        public const decimal RealExtractFinalGravityRatio        = 0.8192m;
-        public const decimal RealExtractOriginalGravityRatio    = 0.1808m;
-        #endregion
-
         /// <summary>
         /// Calculates the gravity contribution of a fermentable.
         /// </summary>
@@ -31,15 +26,15 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the total volume of the batch in gallons.
         /// </param>
         /// <returns>
-        /// The <see cref="Gravity"/> contribution of the grain.
+        /// The <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static Gravity CalculateOriginalGravity(decimal GrainLbs, decimal ExtractPpg, decimal ExtractEfficiency, decimal Volume)
+        public static SpecificGravity CalculateOriginalGravity(decimal GrainLbs, decimal ExtractPpg, decimal ExtractEfficiency, decimal Volume)
         {
             if (Volume == 0m)
             {
                 throw new BeerMathException("volume cannot be 0.");
             }
-            return new Gravity((GrainLbs * ExtractPpg * ExtractEfficiency) / Volume);
+            return SpecificGravity.FromPoints((GrainLbs * ExtractPpg * ExtractEfficiency) / Volume);
         }
 
         /// <summary>
@@ -61,9 +56,9 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the apparent attenuation.
         /// </param>
         /// <returns>
-        /// The final <see cref="Gravity"/> contribution of the grain.
+        /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static Gravity CalculateFinalGravity(decimal GrainLbs, decimal ExtractPPG, decimal ExtractEfficiency,
+        public static SpecificGravity CalculateFinalGravity(decimal GrainLbs, decimal ExtractPPG, decimal ExtractEfficiency,
             decimal Volume, decimal ApparentAttenuation)
         {
             return CalculateFinalGravity(CalculateOriginalGravity(GrainLbs, ExtractPPG, ExtractEfficiency, Volume),
@@ -74,36 +69,18 @@ namespace BeerMath
         /// Calculates the final gravity of a fermentable.
         /// </summary>
         /// <param name="OriginalGravity">
-        /// The original <see cref="Gravity"/> contribution of the grain.
+        /// The original <see cref="SpecificGravity"/> contribution of the grain.
         /// </param>
         /// <param name="ApparentAttenuation">
         /// A <see cref="System.Decimal"/> representing the apparent attenuation.
         /// </param>
         /// <returns>
-        /// The final <see cref="Gravity"/> contribution of the grain.
+        /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static Gravity CalculateFinalGravity(Gravity OriginalGravity, decimal ApparentAttenuation)
+        public static SpecificGravity CalculateFinalGravity(SpecificGravity OriginalGravity, decimal ApparentAttenuation)
         {
-            return new Gravity(OriginalGravity.Points * (1.0m - ApparentAttenuation));
+            return SpecificGravity.FromPoints(OriginalGravity.Points * (1.0m - ApparentAttenuation));
         }
 
-        /// <summary>
-        /// Calculates the Real Extract Gravity value for the grain.
-        /// </summary>
-        /// <param name="OriginalGravity">
-        /// The original <see cref="Gravity"/> contribution of the grain.
-        /// </param>
-        /// <param name="FinalGravity">
-        /// The final <see cref="Gravity"/> contribution of the grain.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Gravity"/> Real Extract value.
-        /// </returns>
-        public static Gravity CalculateRealExtract(Gravity OriginalGravity, Gravity FinalGravity)
-        {
-            decimal realExtractPlato = (RealExtractFinalGravityRatio * FinalGravity.Plato) + (RealExtractOriginalGravityRatio * OriginalGravity.Plato);
-            decimal realExtractPointsValue = Gravity.ConvertPlatoToPoints(realExtractPlato);
-            return new Gravity(realExtractPointsValue);
-        }
     }
 }

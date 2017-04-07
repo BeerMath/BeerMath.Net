@@ -9,8 +9,8 @@ namespace Tests
         [Fact]
         public void AbvCase ()
         {
-            Gravity OG = new Gravity(56m);
-            Gravity FG = new Gravity(10m);
+            SpecificGravity OG = SpecificGravity.FromPoints(56m);
+            SpecificGravity FG = SpecificGravity.FromPoints(10m);
 
             var result = Abv.FromOgFg(OG, FG);
 
@@ -21,8 +21,8 @@ namespace Tests
         [Fact]
         public void AbwCase ()
         {
-            Gravity OG = new Gravity(56m);
-            Gravity FG = new Gravity(10m);
+            SpecificGravity OG = SpecificGravity.FromPoints(56m);
+            SpecificGravity FG = SpecificGravity.FromPoints(10m);
 
             var result = Abw.FromOgFg(OG, FG);
 
@@ -33,8 +33,8 @@ namespace Tests
         [Fact]
         public void CalorieTest()
         {
-            Gravity originalGravity = new Gravity(70m);
-            Gravity finalGravity = new Gravity(15m);
+            SpecificGravity originalGravity = SpecificGravity.FromPoints(70m);
+            SpecificGravity finalGravity = SpecificGravity.FromPoints(15m);
 
             var result = Calorie.FromOgFg(originalGravity, finalGravity);
 

@@ -23,7 +23,7 @@ namespace BeerMath
         public const decimal MetricConversionFactor = 7462m;
 
         public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, decimal Volume,
-            BeerMath.Gravity WortGravity, decimal BoilMinutes)
+            SpecificGravity WortGravity, decimal BoilMinutes)
         {
             decimal GravityAdjustment = 0;
 
@@ -46,7 +46,7 @@ namespace BeerMath
             );
         }
 
-        internal static decimal AdjustGravity(BeerMath.Gravity WortGravity)
+        internal static decimal AdjustGravity(SpecificGravity WortGravity)
         {
             return (WortGravity.Value - Rager.Gravity.AdjustmentMinimum)
                 / Rager.Gravity.ConstantDivisor;

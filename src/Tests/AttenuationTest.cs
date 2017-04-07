@@ -10,8 +10,8 @@ namespace Tests
         [Fact]
         public void ApparentCase ()
         {
-            Gravity OG = new Gravity(56m);
-            Gravity FG = new Gravity(10m);
+            SpecificGravity OG = SpecificGravity.FromPoints(56m);
+            SpecificGravity FG = SpecificGravity.FromPoints(10m);
 
             var result = Attenuation.Apparent(OG, FG);
 
@@ -23,8 +23,8 @@ namespace Tests
         [Fact]
         public void RealCase ()
         {
-            Gravity OG = new Gravity(56m);
-            Gravity FG = new Gravity(10m);
+            SpecificGravity OG = SpecificGravity.FromPoints(56m);
+            SpecificGravity FG = SpecificGravity.FromPoints(10m);
 
             var result = Attenuation.Real(OG, FG);
 

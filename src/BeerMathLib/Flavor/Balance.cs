@@ -16,11 +16,11 @@ namespace BeerMath
         /// Calculates the balance (BU:GU) or bittering units to gravity units of the batch.
         /// </summary>
         /// <param name="FinalGravity">
-        /// A <see cref="Gravity"/> representing the final gravity of the batch.
+        /// A <see cref="SpecificGravity"/> representing the final gravity of the batch.
         /// This should be a value in whole numbers, like 40 instead of 1.040.
         /// </param>
         /// <param name="OriginalGravity">
-        /// A <see cref="Gravity"/> representing the original gravity of the batch.
+        /// A <see cref="SpecificGravity"/> representing the original gravity of the batch.
         /// This should be a value in whole numbers, like 40 instead of 1.040.
         /// </param>
         /// <param name="Bitterness">
@@ -29,9 +29,9 @@ namespace BeerMath
         /// <returns>
         /// A <see cref="System.Decimal"/> BU:GU ratio value.
         /// </returns>
-        public static decimal CalculateBalanceRatio(Gravity FinalGravity, Gravity OriginalGravity, Ibu Bitterness)
+        public static decimal CalculateBalanceRatio(SpecificGravity FinalGravity, SpecificGravity OriginalGravity, Ibu Bitterness)
         {
-            if (FinalGravity == Gravity.Zero && OriginalGravity == Gravity.Zero)
+            if (FinalGravity.IsZero() && OriginalGravity.IsZero())
             {
                 throw new ArgumentException("finalGravity and originalGravity must not be 0.");
             }
