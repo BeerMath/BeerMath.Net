@@ -28,7 +28,7 @@ namespace BeerMath
             throw new InaccurateResultException($"Morey's equations only work up to SRM 50; tried to store {srm.Value}.");
         }
 
-        internal static Srm FromDecimal(decimal raw)
+        public static Srm FromDecimal(decimal raw)
         {
             return new Srm() { Value = raw };
         }

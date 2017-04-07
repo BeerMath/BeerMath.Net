@@ -12,11 +12,9 @@ namespace BeerMath
 
         private Abv () { }
 
-        public Abv FromDecimal(decimal raw)
+        public Abv(decimal raw)
         {
-            return new Abv() {
-                Value = raw,
-            };
+            this.Value = raw;
         }
 
         public static Abv FromOgFg(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
