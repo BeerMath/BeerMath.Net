@@ -12,7 +12,7 @@ namespace Tests
         {
             decimal lbs = 10m;
             decimal degrees = 20m;
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var result = Mcu.FromGrainBill(lbs, degrees, gallons);
 
@@ -25,7 +25,7 @@ namespace Tests
         {
             decimal lbs = 10m;
             decimal degrees = 20m;
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var color1 = Mcu.FromGrainBill(lbs, degrees, gallons);
             var color2 = Mcu.FromGrainBill(lbs, degrees, gallons);
@@ -40,7 +40,7 @@ namespace Tests
         {
             decimal lbs = 10m;
             decimal degrees = 20m;
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);
             var result = Srm.EstimateMorey(mcu);
@@ -54,7 +54,7 @@ namespace Tests
         {
             decimal lbs = 10m;
             decimal degrees = 200m;
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);
 
@@ -66,7 +66,7 @@ namespace Tests
         {
             decimal lbs = 10m;
             decimal degrees = 20m;
-            decimal gallons = 5m;
+            Gallon gallons = new Gallon(5m);
 
             var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);
             var srm = Srm.EstimateMorey(mcu);
