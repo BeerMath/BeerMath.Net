@@ -67,18 +67,18 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the estimated extract efficiency.
         /// </param>
         /// <param name="Volume">
-        /// A <see cref="System.Decimal"/> representing the total volume of the batch in gallons.
+        /// A <see cref="BeerMath.Gallon"/> representing the total volume of the batch.
         /// </param>
         /// <returns>
         /// The <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static SpecificGravity OriginalGravityOfFermentable(decimal GrainLbs, decimal ExtractPpg, decimal ExtractEfficiency, decimal Volume)
+        public static SpecificGravity OriginalGravityOfFermentable(decimal GrainLbs, decimal ExtractPpg, decimal ExtractEfficiency, Gallon Volume)
         {
-            if (Volume == 0m)
+            if (Volume.Value == 0m)
             {
                 throw new ArgumentOutOfRangeException("volume cannot be 0.");
             }
-            return SpecificGravity.FromPoints((GrainLbs * ExtractPpg * ExtractEfficiency) / Volume);
+            return SpecificGravity.FromPoints((GrainLbs * ExtractPpg * ExtractEfficiency) / Volume.Value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the estimated extract efficiency.
         /// </param>
         /// <param name="Volume">
-        /// A <see cref="System.Decimal"/> representing the total volume of the batch in gallons.
+        /// A <see cref="BeerMath.Gallon"/> representing the total volume of the batch in gallons.
         /// </param>
         /// <param name="ApparentAttenuation">
         /// A <see cref="System.Decimal"/> representing the apparent attenuation.
@@ -120,7 +120,7 @@ namespace BeerMath
         /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
         public static SpecificGravity FinalGravityOfFermentable(decimal GrainLbs, decimal ExtractPPG, decimal ExtractEfficiency,
-            decimal Volume, decimal ApparentAttenuation)
+            Gallon Volume, decimal ApparentAttenuation)
         {
             return FinalGravityOfFermentable(OriginalGravityOfFermentable(GrainLbs, ExtractPPG, ExtractEfficiency, Volume),
                 ApparentAttenuation);
