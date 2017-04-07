@@ -17,6 +17,14 @@ namespace BeerMath
 
         private Attenuation() { }
 
+        public static Attenuation FromRaw(decimal rawAttenuation, AttenuationType rawType)
+        {
+            return new Attenuation() {
+                Value = rawAttenuation,
+                Type = rawType,
+            };
+        }
+
         /// <summary>
         /// Attenuation is a measure of how much of the sugar was fermented by the yeast.  Apparent attenuation is the unadjusted
         /// percent of sugars fermented by the yeast.  For beer brewing, apparent attenuation is much more commonly used than real
