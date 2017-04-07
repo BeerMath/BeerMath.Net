@@ -27,10 +27,10 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the mass in ounces of the hops.
         /// </param>
         /// <param name="FinalVolume">
-        /// A <see cref="System.Decimal"/> representing the final volume in gallons of the batch.
+        /// A <see cref="BeerMath.Gallon"/> representing the final volume of the batch.
         /// </param>
         /// <param name="BoilVolume">
-        /// A <see cref="System.Decimal"/> representing the boil volume of the batch.
+        /// A <see cref="BeerMath.Gallon"/> representing the boil volume of the batch.
         /// </param>
         /// <param name="WortGravity">
         /// A <see cref="SpecificGravity"/> representing the gravity of the wort.
@@ -44,21 +44,21 @@ namespace BeerMath
         /// <param name="ElevationFeet">
         /// A <see cref="System.Decimal"/> representing the elevation in feet the batch was brewed at.
         /// </param>
-        public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, decimal FinalVolume,
-            decimal BoilVolume, SpecificGravity WortGravity, decimal BoilTimeMinutes, decimal DesiredIbu, decimal ElevationFeet)
+        public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, Gallon FinalVolume,
+            Gallon BoilVolume, SpecificGravity WortGravity, decimal BoilTimeMinutes, decimal DesiredIbu, decimal ElevationFeet)
         {
-            if (BoilVolume == 0)
+            if (BoilVolume.Value == 0)
             {
                 throw new ArgumentOutOfRangeException($"{nameof(BoilVolume)} cannot be 0.");
             }
 
-            if (FinalVolume == 0)
+            if (FinalVolume.Value == 0)
             {
                 throw new ArgumentOutOfRangeException($"{nameof(FinalVolume)} cannot be 0.");
             }
 
             // Concentration factor of the batch.
-            decimal ConcentrationFactor = FinalVolume / BoilVolume;
+            decimal ConcentrationFactor = FinalVolume.Value / BoilVolume.Value;
 
             decimal BoilGravity = (ConcentrationFactor * (WortGravity.Value - 1)) + 1;
             decimal GravityFactor = ((BoilGravity - Garetz.GravityAdjustment) / Garetz.GravityFactorDivisor) + 1;
@@ -69,7 +69,7 @@ namespace BeerMath
 
             return Ibu.FromDecimal(
                 (Utilization * AlphaAcidRating * Oz * MetricConversionFactor)
-                / (FinalVolume * CombinedAdjustments));
+                / (FinalVolume.Value * CombinedAdjustments));
         }
 
         /// <summary>

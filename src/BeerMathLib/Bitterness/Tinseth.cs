@@ -14,20 +14,20 @@ namespace BeerMath
         public const decimal BoiltimeMaximumUtilization = 4.15m;
         public const decimal NonmetricMagicNumber = 74.9m;
 
-        public static Ibu CalculateIbus(decimal AlphaAcid, decimal Ozs, decimal BoilMinutes, SpecificGravity Gravity, decimal Gallons)
+        public static Ibu CalculateIbus(decimal AlphaAcid, decimal Ozs, decimal BoilMinutes, SpecificGravity Gravity, Gallon Wort)
         {
             // IBUs = (Boil Time Factor * Bigness Factor) * (mg/l of added alpha acids)
             return Ibu.FromDecimal(
                 BoilTimeFactor(BoilMinutes)
                 * BignessFactor(Gravity)
-                * MgAlphaAcids(AlphaAcid, Ozs, Gallons)
+                * MgAlphaAcids(AlphaAcid, Ozs, Wort)
             );
         }
 
-        private static decimal MgAlphaAcids (decimal AlphaAcid, decimal Ozs, decimal Gallons)
+        private static decimal MgAlphaAcids (decimal AlphaAcid, decimal Ozs, Gallon FinalVolume)
         {
             // mg/l of added alpha acids = (decimal AA rating * oz's hops * 7490) / (volume of finished beer in gallons)
-            return (AlphaAcid * Ozs * Tinseth.NonmetricMagicNumber) / Gallons;
+            return (AlphaAcid * Ozs * Tinseth.NonmetricMagicNumber) / FinalVolume.Value;
         }
 
 

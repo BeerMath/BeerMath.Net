@@ -12,7 +12,7 @@ namespace Tests
             decimal grainLbs = 9.3125m; // 9 lbs 5 oz
             decimal extractPPG = 37m;
             decimal extractEfficiency = 0.75m;
-            decimal volume = 5m;
+            Gallon volume = new Gallon(5m);
 
             var result = SpecificGravity.OriginalGravityOfFermentable(grainLbs, extractPPG, extractEfficiency, volume);
 
@@ -26,7 +26,7 @@ namespace Tests
             decimal grainLbs = 9.3125m; // 9 lbs 5 oz
             decimal extractPPG = 37m;
             decimal extractEfficiency = 0.75m;
-            decimal volume = 5m;
+            Gallon volume = new Gallon(5m);
             decimal apparentAttenuation = 0.79m;
 
             var result = SpecificGravity.FinalGravityOfFermentable(grainLbs, extractPPG, extractEfficiency, volume, apparentAttenuation);
