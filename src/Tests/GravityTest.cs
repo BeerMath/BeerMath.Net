@@ -14,9 +14,8 @@ namespace Tests
             decimal extractEfficiency = 0.75m;
             decimal volume = 5m;
 
-            SpecificGravity result = Malt.CalculateOriginalGravity(grainLbs, extractPPG, extractEfficiency, volume);
+            var result = SpecificGravity.OriginalGravityOfFermentable(grainLbs, extractPPG, extractEfficiency, volume);
 
-            Assert.IsType<SpecificGravity>(result);
             Assert.True(result.Points <= 52m);
             Assert.True(result.Points >= 51m);
         }
@@ -30,9 +29,8 @@ namespace Tests
             decimal volume = 5m;
             decimal apparentAttenuation = 0.79m;
 
-            SpecificGravity result = Malt.CalculateFinalGravity(grainLbs, extractPPG, extractEfficiency, volume, apparentAttenuation);
+            var result = SpecificGravity.FinalGravityOfFermentable(grainLbs, extractPPG, extractEfficiency, volume, apparentAttenuation);
 
-            Assert.IsType<SpecificGravity>(result);
             Assert.True(result.Points <= 11m);
             Assert.True(result.Points >= 10m);
         }
