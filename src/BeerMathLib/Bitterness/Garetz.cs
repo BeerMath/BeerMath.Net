@@ -33,7 +33,7 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the boil volume of the batch.
         /// </param>
         /// <param name="WortGravity">
-        /// A <see cref="Gravity"/> representing the gravity of the wort.
+        /// A <see cref="SpecificGravity"/> representing the gravity of the wort.
         /// </param>
         /// <param name="BoilTimeMinutes">
         /// A <see cref="System.Decimal"/> representing the time the sample of hops is allowed to boil in the wort.
@@ -45,7 +45,7 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the elevation in feet the batch was brewed at.
         /// </param>
         public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, decimal FinalVolume,
-            decimal BoilVolume, Gravity WortGravity, decimal BoilTimeMinutes, decimal DesiredIbu, decimal ElevationFeet)
+            decimal BoilVolume, SpecificGravity WortGravity, decimal BoilTimeMinutes, decimal DesiredIbu, decimal ElevationFeet)
         {
             if (BoilVolume == 0)
             {

@@ -14,7 +14,7 @@ namespace BeerMath
         public const decimal BoiltimeMaximumUtilization = 4.15m;
         public const decimal NonmetricMagicNumber = 74.9m;
 
-        public static Ibu CalculateIbus(decimal AlphaAcid, decimal Ozs, decimal BoilMinutes, Gravity Gravity, decimal Gallons)
+        public static Ibu CalculateIbus(decimal AlphaAcid, decimal Ozs, decimal BoilMinutes, SpecificGravity Gravity, decimal Gallons)
         {
             // IBUs = (Boil Time Factor * Bigness Factor) * (mg/l of added alpha acids)
             return Ibu.FromDecimal(
@@ -31,7 +31,7 @@ namespace BeerMath
         }
 
 
-        private static decimal BignessFactor (Gravity Gravity)
+        private static decimal BignessFactor (SpecificGravity Gravity)
         {
             // Bigness factor = 1.65 * 0.000125^(wort gravity - 1)
             return (decimal)((double)Tinseth.BignessCoefficient * Math.Pow((double)Tinseth.BignessBase, (double)(Gravity.Value - 1)));
