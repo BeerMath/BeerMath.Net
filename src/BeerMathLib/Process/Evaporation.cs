@@ -1,8 +1,5 @@
-using System;
-
 namespace BeerMath
 {
-
     public class Evaporation
     {
         public const decimal StandardRate = 0.1m;

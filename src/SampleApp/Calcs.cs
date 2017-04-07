@@ -1,8 +1,7 @@
-using System;
-using BeerMath;
-
 namespace BeerMath.Sample.Console
 {
+    using BeerMath;
+
     public class Calcs
     {
         private static decimal PromptDecimal(string text)

@@ -1,8 +1,5 @@
 using BeerMath;
-using System;
 using Xunit;
-
-using System.Diagnostics;
 
 namespace Tests
 {

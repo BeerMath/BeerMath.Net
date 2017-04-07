@@ -1,5 +1,4 @@
 using BeerMath;
-using System;
 using Xunit;
 
 namespace Tests

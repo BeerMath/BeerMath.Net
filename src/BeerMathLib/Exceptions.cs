@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace BeerMath
 {
+    using System;
+
     /// <summary>
     /// Exception thrown when some kind of error happens inside the BeerMath library
     /// </summary>

@@ -1,5 +1,3 @@
-using System;
-
 namespace BeerMath
 {
     public class Gallon
