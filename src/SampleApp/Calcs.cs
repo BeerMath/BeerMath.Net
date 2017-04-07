@@ -16,7 +16,9 @@ namespace BeerMath.Sample.Console
         {
             decimal lbsGrain = PromptDecimal("Pounds of grain");
             decimal degLovibond = PromptDecimal("Degrees Lovibond");
-            decimal totalVolume = PromptDecimal("Total volume");
+            decimal totalVolumeRaw = PromptDecimal("Total volume");
+
+            Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var MCUs = Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume);
 
@@ -27,7 +29,9 @@ namespace BeerMath.Sample.Console
         {
             decimal lbsGrain = PromptDecimal("Pounds of grain");
             decimal degLovibond = PromptDecimal("Degrees Lovibond");
-            decimal totalVolume = PromptDecimal("Total volume");
+            decimal totalVolumeRaw = PromptDecimal("Total volume");
+
+            Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var SRM = Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume));
 
@@ -38,7 +42,9 @@ namespace BeerMath.Sample.Console
         {
             decimal lbsGrain = PromptDecimal("Pounds of grain");
             decimal degLovibond = PromptDecimal("Degrees Lovibond");
-            decimal totalVolume = PromptDecimal("Total volume");
+            decimal totalVolumeRaw = PromptDecimal("Total volume");
+
+            Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var EBC = Ebc.FromSrm(Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume)));
 
@@ -61,8 +67,11 @@ namespace BeerMath.Sample.Console
             decimal alphaAcid = PromptDecimal("Alpha acid %");
             decimal hopsOzs = PromptDecimal("Ounces of hops");
             decimal boilMinutes = PromptDecimal("Minutes of boil time");
-            SpecificGravity gravity = SpecificGravity.FromPoints(PromptDecimal("Gravity points of wort"));
-            decimal gallons = PromptDecimal("Gallons of wort");
+            decimal gravityRaw = PromptDecimal("Gravity points of wort");
+            decimal gallonsRaw = PromptDecimal("Gallons of wort");
+
+            SpecificGravity gravity = SpecificGravity.FromPoints(gravityRaw);
+            Gallon gallons = new Gallon(gallonsRaw);
 
             var IBU = Tinseth.CalculateIbus(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
 
