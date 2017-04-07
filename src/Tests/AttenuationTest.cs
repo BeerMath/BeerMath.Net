@@ -13,10 +13,11 @@ namespace Tests
             Gravity OG = new Gravity(56m);
             Gravity FG = new Gravity(10m);
 
-            decimal result = Attenuation.CalculateApparent(OG, FG);
+            var result = Attenuation.Apparent(OG, FG);
 
-            Assert.True(result >= 82.14m);
-            Assert.True(result <= 82.15m);
+            Assert.True(result.Value >= 82.14m);
+            Assert.True(result.Value <= 82.15m);
+            Assert.True(result.Type == Attenuation.AttenuationType.Apparent);
         }
 
         [Fact]
@@ -25,10 +26,11 @@ namespace Tests
             Gravity OG = new Gravity(56m);
             Gravity FG = new Gravity(10m);
 
-            decimal result = Attenuation.CalculateReal(OG, FG);
+            var result = Attenuation.Real(OG, FG);
 
-            Assert.True(result >= 66.53m);
-            Assert.True(result <= 66.54m);
+            Assert.True(result.Value >= 66.53m);
+            Assert.True(result.Value <= 66.54m);
+            Assert.True(result.Type == Attenuation.AttenuationType.Real);
         }
     }
 }
