@@ -6,4 +6,3 @@
 
 * Little things:
   * Support arithmetic on pounds/ozs
-  * Constructors taking ozs in the pounds unit
