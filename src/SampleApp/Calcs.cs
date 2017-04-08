@@ -1,6 +1,7 @@
 namespace BeerMath.Sample.Console
 {
     using BeerMath;
+    using System;
 
     public class Calcs
     {
@@ -9,6 +10,13 @@ namespace BeerMath.Sample.Console
             System.Console.Write(text);
             System.Console.Write(" >");
             return decimal.Parse(System.Console.ReadLine());
+        }
+
+        private static int PromptInt(string text)
+        {
+            System.Console.Write(text);
+            System.Console.Write(" >");
+            return int.Parse(System.Console.ReadLine());
         }
 
         public static void McuTest()
@@ -54,10 +62,11 @@ namespace BeerMath.Sample.Console
         {
             decimal alphaAcidRaw = PromptDecimal("Alpha acid %");
             decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
-            decimal boilMinutes = PromptDecimal("Minutes of boil time");
+            int boilMinutesRaw = PromptInt("Minutes of boil time");
 
             AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
             Ounce hopsOzs = new Ounce(hopsOzsRaw);
+            TimeSpan boilMinutes = new TimeSpan(0, boilMinutesRaw, 0);
 
             var IBU = StandardBitterness.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
 
@@ -68,12 +77,13 @@ namespace BeerMath.Sample.Console
         {
             decimal alphaAcidRaw = PromptDecimal("Alpha acid %");
             decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
-            decimal boilMinutes = PromptDecimal("Minutes of boil time");
+            int boilMinutesRaw = PromptInt("Minutes of boil time");
             decimal gravityRaw = PromptDecimal("Gravity points of wort");
             decimal gallonsRaw = PromptDecimal("Gallons of wort");
 
             AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
             Ounce hopsOzs = new Ounce(hopsOzsRaw);
+            TimeSpan boilMinutes = new TimeSpan(0, boilMinutesRaw, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(gravityRaw);
             Gallon gallons = new Gallon(gallonsRaw);
 

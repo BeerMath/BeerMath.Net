@@ -35,8 +35,8 @@ namespace BeerMath
         /// <param name="WortGravity">
         /// A <see cref="SpecificGravity"/> representing the gravity of the wort.
         /// </param>
-        /// <param name="BoilTimeMinutes">
-        /// A <see cref="System.Decimal"/> representing the time the sample of hops is allowed to boil in the wort.
+        /// <param name="boil">
+        /// A <see cref="System.TimeSpan"/> representing the time the sample of hops is allowed to boil in the wort.
         /// </param>
         /// <param name="DesiredIbu">
         /// A <see cref="BeerMath.Ibu"/> representing the IBU desired.
@@ -45,7 +45,8 @@ namespace BeerMath
         /// A <see cref="System.Decimal"/> representing the elevation in feet the batch was brewed at.
         /// </param>
         public static Ibu CalculateIbus(AlphaAcid Rating, Ounce Hops, Gallon FinalVolume,
-            Gallon BoilVolume, SpecificGravity WortGravity, decimal BoilTimeMinutes, Ibu Desired, decimal ElevationFeet)
+            Gallon BoilVolume, SpecificGravity WortGravity, TimeSpan boil, Ibu Desired,
+            decimal ElevationFeet)
         {
             if (BoilVolume.Value == 0)
             {
@@ -65,7 +66,7 @@ namespace BeerMath
             decimal HoppingRateFactor = ((ConcentrationFactor * Desired.Value) / Garetz.HoppingRateDivisor) + 1;
             decimal TemperatureFactor = ((ElevationFeet / Garetz.ElevationDivisor) * Garetz.ElevationMultiplier) + 1;
             decimal CombinedAdjustments = GravityFactor * HoppingRateFactor * TemperatureFactor;
-            decimal Utilization = Garetz.Utilization(BoilTimeMinutes);
+            decimal Utilization = Garetz.Utilization((decimal)boil.TotalMinutes);
 
             return new Ibu(
                 (Utilization * Rating.Value * Hops.Value * MetricConversionFactor)
