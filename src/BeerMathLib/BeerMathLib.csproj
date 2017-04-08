@@ -5,8 +5,8 @@
     <VersionPrefix>0.4.0</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <Description>A little library for doing brewers' math.</Description>
-    <OutputPath>$(MSBuildProjectDirectory)../../../dist/$(MSBuildProjectName)/$(Configuration)</OutputPath>
-    <IntermediateOutputPath>$(MSBuildProjectDirectory)../../../build/$(MSBuildProjectName)/$(Configuration)</IntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildProjectDirectory)../../../dist/$(MSBuildProjectName)</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)../../../build/$(MSBuildProjectName)</BaseIntermediateOutputPath>
   </PropertyGroup>
 
 </Project>

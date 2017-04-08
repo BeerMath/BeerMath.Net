@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <OutputPath>$(MSBuildProjectDirectory)../../../dist/$(MSBuildProjectName)/$(Configuration)</OutputPath>
-    <IntermediateOutputPath>$(MSBuildProjectDirectory)../../../build/$(MSBuildProjectName)/$(Configuration)</IntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildProjectDirectory)../../../dist/$(MSBuildProjectName)</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)../../../build/$(MSBuildProjectName)</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
