@@ -29,7 +29,8 @@ namespace BeerMath
         /// <returns>
         /// A <see cref="System.Decimal"/> BU:GU ratio value.
         /// </returns>
-        public static decimal CalculateBalanceRatio(SpecificGravity FinalGravity, SpecificGravity OriginalGravity, Ibu Bitterness)
+        public static decimal CalculateBalanceRatio(SpecificGravity FinalGravity,
+            SpecificGravity OriginalGravity, Ibu Bitterness)
         {
             if (FinalGravity.IsZero() && OriginalGravity.IsZero())
             {

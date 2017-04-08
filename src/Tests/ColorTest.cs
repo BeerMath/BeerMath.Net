@@ -10,7 +10,7 @@ namespace Tests
         public void McuFromGrain ()
         {
             Pound lbs = new Pound(10m);
-            decimal degrees = 20m;
+            Lovibond degrees = new Lovibond(20m);
             Gallon gallons = new Gallon(5m);
 
             var result = Mcu.FromGrainBill(lbs, degrees, gallons);
@@ -23,7 +23,7 @@ namespace Tests
         public void McuFromSum ()
         {
             Pound lbs = new Pound(10m);
-            decimal degrees = 20m;
+            Lovibond degrees = new Lovibond(20m);
             Gallon gallons = new Gallon(5m);
 
             var color1 = Mcu.FromGrainBill(lbs, degrees, gallons);
@@ -38,7 +38,7 @@ namespace Tests
         public void SrmFromMcu ()
         {
             Pound lbs = new Pound(10m);
-            decimal degrees = 20m;
+            Lovibond degrees = new Lovibond(20m);
             Gallon gallons = new Gallon(5m);
 
             var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);
@@ -52,7 +52,7 @@ namespace Tests
         public void SrmExceedingLimit ()
         {
             Pound lbs = new Pound(10m);
-            decimal degrees = 200m;
+            Lovibond degrees = new Lovibond(200m);
             Gallon gallons = new Gallon(5m);
 
             var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);
@@ -64,7 +64,7 @@ namespace Tests
         public void EbcFromSrm ()
         {
             Pound lbs = new Pound(10m);
-            decimal degrees = 20m;
+            Lovibond degrees = new Lovibond(20m);
             Gallon gallons = new Gallon(5m);
 
             var mcu = Mcu.FromGrainBill(lbs, degrees, gallons);

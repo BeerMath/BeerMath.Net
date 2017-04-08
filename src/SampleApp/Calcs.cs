@@ -22,10 +22,11 @@ namespace BeerMath.Sample.Console
         public static void McuTest()
         {
             decimal lbsGrainRaw = PromptDecimal("Pounds of grain");
-            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal degLovibondRaw = PromptDecimal("Degrees Lovibond");
             decimal totalVolumeRaw = PromptDecimal("Total volume");
 
             Pound lbsGrain = new Pound(lbsGrainRaw);
+            Lovibond degLovibond = new Lovibond(degLovibondRaw);
             Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var MCUs = Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume);
@@ -36,10 +37,11 @@ namespace BeerMath.Sample.Console
         public static void SrmTest()
         {
             decimal lbsGrainRaw = PromptDecimal("Pounds of grain");
-            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal degLovibondRaw = PromptDecimal("Degrees Lovibond");
             decimal totalVolumeRaw = PromptDecimal("Total volume");
 
             Pound lbsGrain = new Pound(lbsGrainRaw);
+            Lovibond degLovibond = new Lovibond(degLovibondRaw);
             Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var SRM = Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume));
@@ -50,10 +52,11 @@ namespace BeerMath.Sample.Console
         public static void EbcTest()
         {
             decimal lbsGrainRaw = PromptDecimal("Pounds of grain");
-            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal degLovibondRaw = PromptDecimal("Degrees Lovibond");
             decimal totalVolumeRaw = PromptDecimal("Total volume");
 
             Pound lbsGrain = new Pound(lbsGrainRaw);
+            Lovibond degLovibond = new Lovibond(degLovibondRaw);
             Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var EBC = Ebc.FromSrm(Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume)));
