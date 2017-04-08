@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <BaseOutputPath>$(MSBuildProjectDirectory)../../../dist/$(MSBuildProjectName)</BaseOutputPath>
-    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)../../../build/$(MSBuildProjectName)</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
