@@ -9,11 +9,11 @@ namespace BeerMath
         public decimal Value { get; private set; }
 
         /// <summary>get the MCU value of a malt addition</summary>
-        public static Mcu FromGrainBill(decimal Lbs, decimal Lovibond, Gallon wort)
+        public static Mcu FromGrainBill(Pound grain, decimal Lovibond, Gallon wort)
         {
             return new Mcu()
             {
-                Value = (Lbs * Lovibond) / wort.Value,
+                Value = (grain.Value * Lovibond) / wort.Value,
             };
         }
 

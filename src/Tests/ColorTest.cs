@@ -9,7 +9,7 @@ namespace Tests
         [Fact]
         public void McuFromGrain ()
         {
-            decimal lbs = 10m;
+            Pound lbs = new Pound(10m);
             decimal degrees = 20m;
             Gallon gallons = new Gallon(5m);
 
@@ -22,7 +22,7 @@ namespace Tests
         [Fact]
         public void McuFromSum ()
         {
-            decimal lbs = 10m;
+            Pound lbs = new Pound(10m);
             decimal degrees = 20m;
             Gallon gallons = new Gallon(5m);
 
@@ -37,7 +37,7 @@ namespace Tests
         [Fact]
         public void SrmFromMcu ()
         {
-            decimal lbs = 10m;
+            Pound lbs = new Pound(10m);
             decimal degrees = 20m;
             Gallon gallons = new Gallon(5m);
 
@@ -51,7 +51,7 @@ namespace Tests
         [Fact]
         public void SrmExceedingLimit ()
         {
-            decimal lbs = 10m;
+            Pound lbs = new Pound(10m);
             decimal degrees = 200m;
             Gallon gallons = new Gallon(5m);
 
@@ -63,7 +63,7 @@ namespace Tests
         [Fact]
         public void EbcFromSrm ()
         {
-            decimal lbs = 10m;
+            Pound lbs = new Pound(10m);
             decimal degrees = 20m;
             Gallon gallons = new Gallon(5m);
 
