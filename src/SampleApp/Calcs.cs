@@ -53,10 +53,11 @@ namespace BeerMath.Sample.Console
         public static void IbuTest()
         {
             decimal alphaAcidRaw = PromptDecimal("Alpha acid %");
-            decimal hopsOzs = PromptDecimal("Ounces of hops");
+            decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
             decimal boilMinutes = PromptDecimal("Minutes of boil time");
 
             AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
+            Ounce hopsOzs = new Ounce(hopsOzsRaw);
 
             var IBU = StandardBitterness.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
 
@@ -66,12 +67,13 @@ namespace BeerMath.Sample.Console
         public static void TinsethTest()
         {
             decimal alphaAcidRaw = PromptDecimal("Alpha acid %");
-            decimal hopsOzs = PromptDecimal("Ounces of hops");
+            decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
             decimal boilMinutes = PromptDecimal("Minutes of boil time");
             decimal gravityRaw = PromptDecimal("Gravity points of wort");
             decimal gallonsRaw = PromptDecimal("Gallons of wort");
 
             AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
+            Ounce hopsOzs = new Ounce(hopsOzsRaw);
             SpecificGravity gravity = SpecificGravity.FromPoints(gravityRaw);
             Gallon gallons = new Gallon(gallonsRaw);
 

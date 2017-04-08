@@ -9,7 +9,7 @@ namespace Tests
         public void IbuFromStandard ()
         {
             AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
-            decimal ozs = 1.0m;
+            Ounce ozs = new Ounce(1.0m);
             decimal minutes = 60m;
 
             var result = StandardBitterness.CalculateIbus(alpha, ozs, minutes);
@@ -22,7 +22,7 @@ namespace Tests
         public void IbuFromTinseth ()
         {
             AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
-            decimal ozs = 1.0m;
+            Ounce ozs = new Ounce(1.0m);
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon gallons = new Gallon(5m);
@@ -37,7 +37,7 @@ namespace Tests
         public void IbuFromRager()
         {
             AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
-            decimal ozs = 1.0m;
+            Ounce ozs = new Ounce(1.0m);
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon gallons = new Gallon(5m);
@@ -52,7 +52,7 @@ namespace Tests
         public void IbuFromGaretz()
         {
             AlphaAcid alpha = AlphaAcid.FromPercent(5.5m);
-            decimal ozs = 1.0m;
+            Ounce ozs = new Ounce(1.0m);
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon finalVolume = new Gallon(5m);
@@ -70,8 +70,8 @@ namespace Tests
         public void HbuTest()
         {
             AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
-            decimal hopsOz = 1.0m;
-            var result = Hbu.FromHopsBill(alpha, hopsOz);
+            Ounce ozs = new Ounce(1.0m);
+            var result = Hbu.FromHopsBill(alpha, ozs);
 
             Assert.True(result.Value == 6.0m);
         }
