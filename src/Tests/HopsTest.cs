@@ -8,7 +8,7 @@ namespace Tests
         [Fact]
         public void IbuFromStandard ()
         {
-            decimal alpha = 6.0m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
             decimal ozs = 1.0m;
             decimal minutes = 60m;
 
@@ -21,7 +21,7 @@ namespace Tests
         [Fact]
         public void IbuFromTinseth ()
         {
-            decimal alpha = 6.0m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
             decimal ozs = 1.0m;
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
@@ -36,7 +36,7 @@ namespace Tests
         [Fact]
         public void IbuFromRager()
         {
-            decimal alpha = 6.0m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
             decimal ozs = 1.0m;
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
@@ -51,7 +51,7 @@ namespace Tests
         [Fact]
         public void IbuFromGaretz()
         {
-            decimal alpha = 5.5m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(5.5m);
             decimal ozs = 1.0m;
             decimal minutes = 60m;
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
@@ -69,7 +69,7 @@ namespace Tests
         [Fact]
         public void HbuTest()
         {
-            decimal alpha = 6.0m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
             decimal hopsOz = 1.0m;
             var result = Hbu.FromHopsBill(alpha, hopsOz);
 

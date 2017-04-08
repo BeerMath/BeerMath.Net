@@ -6,10 +6,10 @@ namespace BeerMath
     {
         private const decimal MagicNumber = 7.25m;
 
-        public static Ibu CalculateIbus(decimal AlphaAcid, decimal HopsOzs, decimal BoilMinutes)
+        public static Ibu CalculateIbus(AlphaAcid rating, decimal HopsOzs, decimal BoilMinutes)
         {
             return new Ibu(
-                (AlphaAcid * HopsOzs * StandardUtilization(BoilMinutes))
+                (rating.Value * HopsOzs * StandardUtilization(BoilMinutes))
                 / StandardBitterness.MagicNumber
             );
         }

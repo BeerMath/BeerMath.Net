@@ -20,8 +20,8 @@ namespace BeerMath
         /// This is intended to be an iterative method. You must guess at the final result,
         /// and rerun the process, each time adjusting the value downward.
         /// </summary>
-        /// <param name="AlphaAcidRating">
-        /// A <see cref="System.Decimal"/> representing the alpha acid rating of the hops. Represented like 6.0 not 0.060.
+        /// <param name="Rating">
+        /// A <see cref="BeerMath.AlphaAcid"/> representing the alpha acid rating of the hops.
         /// </param>
         /// <param name="Oz">
         /// A <see cref="System.Decimal"/> representing the mass in ounces of the hops.
@@ -44,7 +44,7 @@ namespace BeerMath
         /// <param name="ElevationFeet">
         /// A <see cref="System.Decimal"/> representing the elevation in feet the batch was brewed at.
         /// </param>
-        public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, Gallon FinalVolume,
+        public static Ibu CalculateIbus(AlphaAcid Rating, decimal Oz, Gallon FinalVolume,
             Gallon BoilVolume, SpecificGravity WortGravity, decimal BoilTimeMinutes, Ibu Desired, decimal ElevationFeet)
         {
             if (BoilVolume.Value == 0)
@@ -68,7 +68,7 @@ namespace BeerMath
             decimal Utilization = Garetz.Utilization(BoilTimeMinutes);
 
             return new Ibu(
-                (Utilization * AlphaAcidRating * Oz * MetricConversionFactor)
+                (Utilization * Rating.Value * Oz * MetricConversionFactor)
                 / (FinalVolume.Value * CombinedAdjustments));
         }
 

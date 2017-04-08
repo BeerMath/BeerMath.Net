@@ -22,7 +22,7 @@ namespace BeerMath
 
         public const decimal MetricConversionFactor = 7462m;
 
-        public static Ibu CalculateIbus(decimal AlphaAcidRating, decimal Oz, Gallon BoilVolume,
+        public static Ibu CalculateIbus(AlphaAcid Rating, decimal Oz, Gallon BoilVolume,
             SpecificGravity WortGravity, decimal BoilMinutes)
         {
             decimal GravityAdjustment = 0;
@@ -38,10 +38,10 @@ namespace BeerMath
 
             // Convert utilization and alpha acid to percentage
             Utilization = Utilization / 100m;
-            AlphaAcidRating = AlphaAcidRating / 100m;
+            decimal percentage = Rating.Value / 100m;
 
             return new Ibu(
-                (Oz * Utilization * AlphaAcidRating * Rager.MetricConversionFactor)
+                (Oz * Utilization * percentage * Rager.MetricConversionFactor)
                 / (BoilVolume.Value * (1 + GravityAdjustment))
             );
         }
