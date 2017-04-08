@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <OutputPath>$(MSBuildProjectDirectory)../../../dist/$(MSBuildProjectName)/$(Configuration)</OutputPath>
+    <IntermediateOutputPath>$(MSBuildProjectDirectory)../../../build/$(MSBuildProjectName)/$(Configuration)</IntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
