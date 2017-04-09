@@ -1,4 +1,5 @@
 using BeerMath;
+using System;
 using Xunit;
 
 namespace Tests
@@ -8,9 +9,9 @@ namespace Tests
         [Fact]
         public void IbuFromStandard ()
         {
-            decimal alpha = 6.0m;
-            decimal ozs = 1.0m;
-            decimal minutes = 60m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            Ounce ozs = new Ounce(1.0m);
+            TimeSpan minutes = new TimeSpan(0, 60, 0);
 
             var result = StandardBitterness.CalculateIbus(alpha, ozs, minutes);
 
@@ -21,9 +22,9 @@ namespace Tests
         [Fact]
         public void IbuFromTinseth ()
         {
-            decimal alpha = 6.0m;
-            decimal ozs = 1.0m;
-            decimal minutes = 60m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            Ounce ozs = new Ounce(1.0m);
+            TimeSpan minutes = new TimeSpan(0, 60, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon gallons = new Gallon(5m);
 
@@ -36,9 +37,9 @@ namespace Tests
         [Fact]
         public void IbuFromRager()
         {
-            decimal alpha = 6.0m;
-            decimal ozs = 1.0m;
-            decimal minutes = 60m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            Ounce ozs = new Ounce(1.0m);
+            TimeSpan minutes = new TimeSpan(0, 60, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon gallons = new Gallon(5m);
 
@@ -51,9 +52,9 @@ namespace Tests
         [Fact]
         public void IbuFromGaretz()
         {
-            decimal alpha = 5.5m;
-            decimal ozs = 1.0m;
-            decimal minutes = 60m;
+            AlphaAcid alpha = AlphaAcid.FromPercent(5.5m);
+            Ounce ozs = new Ounce(1.0m);
+            TimeSpan minutes = new TimeSpan(0, 60, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon finalVolume = new Gallon(5m);
             Gallon boilVolume = new Gallon(6.0m);
@@ -69,9 +70,9 @@ namespace Tests
         [Fact]
         public void HbuTest()
         {
-            decimal alpha = 6.0m;
-            decimal hopsOz = 1.0m;
-            var result = Hbu.FromHopsBill(alpha, hopsOz);
+            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            Ounce ozs = new Ounce(1.0m);
+            var result = new Hbu(alpha, ozs);
 
             Assert.True(result.Value == 6.0m);
         }

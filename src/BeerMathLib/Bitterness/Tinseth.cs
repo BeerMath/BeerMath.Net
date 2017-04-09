@@ -8,40 +8,43 @@ namespace BeerMath
     /// </summary>
     public static class Tinseth
     {
-        public const decimal BignessCoefficient = 1.65m;
-        public const decimal BignessBase = 0.000125m;
-        public const decimal BoiltimeShape = -0.04m;
-        public const decimal BoiltimeMaximumUtilization = 4.15m;
-        public const decimal NonmetricMagicNumber = 74.9m;
+        private const double BignessCoefficient = 1.65;
+        private const double BignessBase = 0.000125;
+        private const double BoiltimeShape = -0.04;
+        private const double BoiltimeMaximumUtilization = 4.15;
+        private const decimal NonmetricMagicNumber = 74.9m;
 
-        public static Ibu CalculateIbus(decimal AlphaAcid, decimal Ozs, decimal BoilMinutes, SpecificGravity Gravity, Gallon Wort)
+        public static Ibu CalculateIbus(AlphaAcid rating, Ounce Hops, TimeSpan boil,
+            SpecificGravity Gravity, Gallon Wort)
         {
             // IBUs = (Boil Time Factor * Bigness Factor) * (mg/l of added alpha acids)
             return new Ibu(
-                BoilTimeFactor(BoilMinutes)
+                BoilTimeFactor(boil)
                 * BignessFactor(Gravity)
-                * MgAlphaAcids(AlphaAcid, Ozs, Wort)
+                * MgAlphaAcids(rating, Hops, Wort)
             );
         }
 
-        private static decimal MgAlphaAcids (decimal AlphaAcid, decimal Ozs, Gallon FinalVolume)
+        private static decimal MgAlphaAcids (AlphaAcid rating, Ounce Hops, Gallon FinalVolume)
         {
             // mg/l of added alpha acids = (decimal AA rating * oz's hops * 7490) / (volume of finished beer in gallons)
-            return (AlphaAcid * Ozs * Tinseth.NonmetricMagicNumber) / FinalVolume.Value;
+            return (rating.Value * Hops.Value * Tinseth.NonmetricMagicNumber) / FinalVolume.Value;
         }
 
 
         private static decimal BignessFactor (SpecificGravity Gravity)
         {
             // Bigness factor = 1.65 * 0.000125^(wort gravity - 1)
-            return (decimal)((double)Tinseth.BignessCoefficient * Math.Pow((double)Tinseth.BignessBase, (double)(Gravity.Value - 1)));
+            return (decimal)(Tinseth.BignessCoefficient
+                * Math.Pow(Tinseth.BignessBase, (double)(Gravity.Value - 1)));
         }
 
 
-        private static decimal BoilTimeFactor (decimal BoilMinutes)
+        private static decimal BoilTimeFactor (TimeSpan boil)
         {
             // Boil Time factor =1 - e^(-0.04 * time in min's) / ( 4.15)
-            return (decimal)((1 - Math.Pow(Math.E, (double)(Tinseth.BoiltimeShape * BoilMinutes))) / (double)Tinseth.BoiltimeMaximumUtilization);
+            return (decimal)((1 - Math.Pow(Math.E, Tinseth.BoiltimeShape * boil.TotalMinutes))
+                / Tinseth.BoiltimeMaximumUtilization);
         }
     }
 }

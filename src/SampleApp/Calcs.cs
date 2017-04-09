@@ -1,6 +1,7 @@
 namespace BeerMath.Sample.Console
 {
     using BeerMath;
+    using System;
 
     public class Calcs
     {
@@ -11,12 +12,21 @@ namespace BeerMath.Sample.Console
             return decimal.Parse(System.Console.ReadLine());
         }
 
+        private static int PromptInt(string text)
+        {
+            System.Console.Write(text);
+            System.Console.Write(" >");
+            return int.Parse(System.Console.ReadLine());
+        }
+
         public static void McuTest()
         {
-            decimal lbsGrain = PromptDecimal("Pounds of grain");
-            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal lbsGrainRaw = PromptDecimal("Pounds of grain");
+            decimal degLovibondRaw = PromptDecimal("Degrees Lovibond");
             decimal totalVolumeRaw = PromptDecimal("Total volume");
 
+            Pound lbsGrain = new Pound(lbsGrainRaw);
+            Lovibond degLovibond = new Lovibond(degLovibondRaw);
             Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var MCUs = Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume);
@@ -26,10 +36,12 @@ namespace BeerMath.Sample.Console
 
         public static void SrmTest()
         {
-            decimal lbsGrain = PromptDecimal("Pounds of grain");
-            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal lbsGrainRaw = PromptDecimal("Pounds of grain");
+            decimal degLovibondRaw = PromptDecimal("Degrees Lovibond");
             decimal totalVolumeRaw = PromptDecimal("Total volume");
 
+            Pound lbsGrain = new Pound(lbsGrainRaw);
+            Lovibond degLovibond = new Lovibond(degLovibondRaw);
             Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var SRM = Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume));
@@ -39,10 +51,12 @@ namespace BeerMath.Sample.Console
 
         public static void EbcTest()
         {
-            decimal lbsGrain = PromptDecimal("Pounds of grain");
-            decimal degLovibond = PromptDecimal("Degrees Lovibond");
+            decimal lbsGrainRaw = PromptDecimal("Pounds of grain");
+            decimal degLovibondRaw = PromptDecimal("Degrees Lovibond");
             decimal totalVolumeRaw = PromptDecimal("Total volume");
 
+            Pound lbsGrain = new Pound(lbsGrainRaw);
+            Lovibond degLovibond = new Lovibond(degLovibondRaw);
             Gallon totalVolume = new Gallon(totalVolumeRaw);
 
             var EBC = Ebc.FromSrm(Srm.EstimateMorey(Mcu.FromGrainBill(lbsGrain, degLovibond, totalVolume)));
@@ -52,9 +66,13 @@ namespace BeerMath.Sample.Console
 
         public static void IbuTest()
         {
-            decimal alphaAcid = PromptDecimal("Alpha acid %");
-            decimal hopsOzs = PromptDecimal("Ounces of hops");
-            decimal boilMinutes = PromptDecimal("Minutes of boil time");
+            decimal alphaAcidRaw = PromptDecimal("Alpha acid %");
+            decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
+            int boilMinutesRaw = PromptInt("Minutes of boil time");
+
+            AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
+            Ounce hopsOzs = new Ounce(hopsOzsRaw);
+            TimeSpan boilMinutes = new TimeSpan(0, boilMinutesRaw, 0);
 
             var IBU = StandardBitterness.CalculateIbus(alphaAcid, hopsOzs, boilMinutes);
 
@@ -63,12 +81,15 @@ namespace BeerMath.Sample.Console
 
         public static void TinsethTest()
         {
-            decimal alphaAcid = PromptDecimal("Alpha acid %");
-            decimal hopsOzs = PromptDecimal("Ounces of hops");
-            decimal boilMinutes = PromptDecimal("Minutes of boil time");
+            decimal alphaAcidRaw = PromptDecimal("Alpha acid %");
+            decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
+            int boilMinutesRaw = PromptInt("Minutes of boil time");
             decimal gravityRaw = PromptDecimal("Gravity points of wort");
             decimal gallonsRaw = PromptDecimal("Gallons of wort");
 
+            AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
+            Ounce hopsOzs = new Ounce(hopsOzsRaw);
+            TimeSpan boilMinutes = new TimeSpan(0, boilMinutesRaw, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(gravityRaw);
             Gallon gallons = new Gallon(gallonsRaw);
 

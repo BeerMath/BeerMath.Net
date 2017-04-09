@@ -6,15 +6,15 @@ namespace BeerMath
     {
         private const decimal MagicNumber = 7.25m;
 
-        public static Ibu CalculateIbus(decimal AlphaAcid, decimal HopsOzs, decimal BoilMinutes)
+        public static Ibu CalculateIbus(AlphaAcid rating, Ounce Hops, TimeSpan boil)
         {
             return new Ibu(
-                (AlphaAcid * HopsOzs * StandardUtilization(BoilMinutes))
+                (rating.Value * Hops.Value * StandardUtilization(boil))
                 / StandardBitterness.MagicNumber
             );
         }
 
-        private static decimal StandardUtilization (decimal BoilMinutes)
+        private static decimal StandardUtilization (TimeSpan boil)
         {
             /*
              * Percent Utilization Chart:
@@ -30,30 +30,32 @@ namespace BeerMath
                 46-50 minutes 28.1%
                 51-60 minutes 30.0%
             */
-            if(BoilMinutes < 0)
+            var minutes = boil.TotalMinutes;
+
+            if(minutes < 0)
                 throw new ArgumentOutOfRangeException("Boil time cannot be negative");
 
-            if(BoilMinutes <= 5)
+            if(minutes <= 5)
                 return 5m;
-            if(BoilMinutes <= 10)
+            if(minutes <= 10)
                 return 6m;
-            if(BoilMinutes <= 15)
+            if(minutes <= 15)
                 return 8m;
-            if(BoilMinutes <= 20)
+            if(minutes <= 20)
                 return 10.1m;
-            if(BoilMinutes <= 25)
+            if(minutes <= 25)
                 return 12.1m;
-            if(BoilMinutes <= 30)
+            if(minutes <= 30)
                 return 15.3m;
-            if(BoilMinutes <= 35)
+            if(minutes <= 35)
                 return 18.8m;
-            if(BoilMinutes <= 40)
+            if(minutes <= 40)
                 return 22.8m;
-            if(BoilMinutes <= 45)
+            if(minutes <= 45)
                 return 26.9m;
-            if(BoilMinutes <= 50)
+            if(minutes <= 50)
                 return 28.1m;
-            if(BoilMinutes <= 60)
+            if(minutes <= 60)
                 return 30m;
 
             throw new ArgumentOutOfRangeException("Boil times greater than 60 minutes are not supported");

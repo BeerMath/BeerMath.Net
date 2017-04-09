@@ -8,7 +8,7 @@ namespace Tests
         [Fact]
         public void OriginalGravityTest()
         {
-            decimal grainLbs = 9.3125m; // 9 lbs 5 oz
+            Pound grainLbs = new Pound(9.3125m); // 9 lbs 5 oz
             decimal extractPPG = 37m;
             decimal extractEfficiency = 0.75m;
             Gallon volume = new Gallon(5m);
@@ -22,7 +22,7 @@ namespace Tests
         [Fact]
         public void FinalGravityTest()
         {
-            decimal grainLbs = 9.3125m; // 9 lbs 5 oz
+            Pound grainLbs = new Pound(9.3125m); // 9 lbs 5 oz
             decimal extractPPG = 37m;
             decimal extractEfficiency = 0.75m;
             Gallon volume = new Gallon(5m);

@@ -1,4 +1,5 @@
 using BeerMath;
+using System;
 using Xunit;
 
 namespace Tests
@@ -10,7 +11,7 @@ namespace Tests
         public void Standard ()
         {
             Gallon wort = new Gallon(6m);
-            decimal boil = 60m;
+            TimeSpan boil = new TimeSpan(0, 60, 0);
 
             var result = Evaporation.CalculateLoss(wort, boil);
 
@@ -22,7 +23,7 @@ namespace Tests
         public void Custom ()
         {
             Gallon wort = new Gallon(6m);
-            decimal boil = 60m;
+            TimeSpan boil = new TimeSpan(0, 60, 0);
             decimal rate = 0.2m;
 
             var result = Evaporation.CalculateLoss(wort, boil, rate);

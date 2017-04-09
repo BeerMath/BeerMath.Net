@@ -7,14 +7,14 @@ namespace BeerMath
     {
         public decimal Value { get; private set; }
 
-        public static Hbu FromHopsBill(decimal AlphaAcidRating, decimal Oz)
+        public Hbu(decimal hbu)
         {
-            return new Hbu()
-            {
-                Value = AlphaAcidRating * Oz,
-            };
+            Value = hbu;
         }
 
-        private Hbu() { }
+        public Hbu(AlphaAcid Rating, Ounce Hops)
+        {
+            Value = Rating.Value * Hops.Value;
+        }
     }
 }

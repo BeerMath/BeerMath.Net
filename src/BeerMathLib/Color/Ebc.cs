@@ -8,22 +8,21 @@ namespace BeerMath
         /// <summary>the color in EBC</summary>
         public decimal Value { get; private set; }
 
+        public Ebc(decimal ebc)
+        {
+            Value = ebc;
+        }
+
         /// <summary>estimate the EBC value of an SRM color</summary>
         public static Ebc FromSrm(Srm srm)
         {
-            return new Ebc()
-            {
-                Value = srm.Value * ToEbcConversionFactor,
-            };
+            return new Ebc(srm.Value * ToEbcConversionFactor);
         }
 
         public Srm ToSrm
         {
-            get => Srm.FromDecimal(this.Value * ToSrmConversionFactor);
+            get => new Srm(this.Value * ToSrmConversionFactor);
         }
-
-        // private constructor so no one can create this directly
-        private Ebc() {}
 
         // Conversion constant
         // https://en.wikipedia.org/wiki/Standard_Reference_Method#EBC
