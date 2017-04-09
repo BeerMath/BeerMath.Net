@@ -2,13 +2,11 @@
 
 So you want to do beer calculations in your .Net project?  You've come to the right place!
 
-Version 0.4 of BeerMath.net has several types of calculations:
+Version 0.5 of BeerMath.net has several types of calculations:
 * Wort color
 * Hop bitterness
 * Alcohol content
 * Gravity
-
-The current API basically sucks, so version 0.5 will refactor that pretty severely.
 
 ## Why decimal everywhere?
 *Note: I'm currently re-thinking this, as we're not dealing with the kind of precision which would make decimals necessary. System.Math is pushing calculations through doubles anyhow.*
