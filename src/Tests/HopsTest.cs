@@ -72,7 +72,7 @@ namespace Tests
         {
             AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
             Ounce ozs = new Ounce(1.0m);
-            var result = Hbu.FromHopsBill(alpha, ozs);
+            var result = new Hbu(alpha, ozs);
 
             Assert.True(result.Value == 6.0m);
         }
