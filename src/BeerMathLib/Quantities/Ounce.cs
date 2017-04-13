@@ -2,10 +2,8 @@ namespace BeerMath
 {
     using System;
 
-    public class Ounce
+    public class Ounce : BeerValue
     {
-        public decimal Value { get; private set; }
-
         public Ounce(decimal ounce = 0m)
         {
             if (ounce < 0m)

@@ -1,12 +1,10 @@
 namespace BeerMath
 {
-    public class Gallon
+    public class Gallon : BeerValue
     {
-        public decimal Value { get; private set; }
-
-        public Gallon(decimal gallon = 0m)
+        public Gallon(decimal gallons = 0m)
         {
-            Value = gallon;
+            Value = gallons;
         }
     }
 }
