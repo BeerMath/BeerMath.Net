@@ -38,5 +38,15 @@ namespace BeerMath
         {
             return new Pound(pound1.Value + pound2.Value);
         }
+
+        public static Pound operator -(Pound Pound1, Pound Pound2)
+        {
+            var result = Pound1.Value - Pound2.Value;
+            if (result < 0m)
+            {
+                throw new OverflowException($"{nameof(Pound)} may not be negative");
+            }
+            return new Pound(result);
+        }
     }
 }

@@ -38,5 +38,15 @@ namespace BeerMath
         {
             return new Ounce(ounce1.Value + ounce2.Value);
         }
+
+        public static Ounce operator -(Ounce Ounce1, Ounce Ounce2)
+        {
+            var result = Ounce1.Value - Ounce2.Value;
+            if (result < 0m)
+            {
+                throw new OverflowException($"{nameof(Ounce)} may not be negative");
+            }
+            return new Ounce(result);
+        }
     }
 }
