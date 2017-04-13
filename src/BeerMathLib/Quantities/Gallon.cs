@@ -6,5 +6,10 @@ namespace BeerMath
         {
             Value = gallons;
         }
+
+        public static Gallon operator +(Gallon gallon1, Gallon gallon2)
+        {
+            return new Gallon(gallon1.Value + gallon2.Value);
+        }
     }
 }

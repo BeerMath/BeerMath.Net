@@ -28,5 +28,15 @@ namespace BeerMath
 
             Value = pound.Value * 16m;
         }
+
+        public static Ounce operator +(Ounce ounce1, Ounce ounce2)
+        {
+            return new Ounce(ounce1.Value + ounce2.Value);
+        }
+
+        public static Ounce operator +(Ounce ounce, Pound pound)
+        {
+            return ounce + new Ounce(pound);
+        }
     }
 }

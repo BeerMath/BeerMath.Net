@@ -2,10 +2,8 @@ namespace BeerMath
 {
     using System;
 
-    public class Pound
+    public class Pound : BeerValue
     {
-        public decimal Value { get; private set; }
-
         public Pound(decimal pound = 0m)
         {
             if (pound < 0m)
@@ -29,6 +27,16 @@ namespace BeerMath
             }
 
             Value = ounce.Value / 16m;
+        }
+
+        public static Pound operator +(Pound pound1, Pound pound2)
+        {
+            return new Pound(pound1.Value + pound2.Value);
+        }
+
+        public static Pound operator +(Pound pound, Ounce ounce)
+        {
+            return pound + new Pound(ounce);
         }
     }
 }
