@@ -2,9 +2,9 @@ namespace BeerMath
 {
     public class Ibu : BeerValue
     {
-        public Ibu(decimal raw)
+        public Ibu(decimal ibus)
         {
-            Value = raw;
+            Value = ibus;
         }
     }
 }

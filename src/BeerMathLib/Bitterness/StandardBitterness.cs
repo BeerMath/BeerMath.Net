@@ -6,15 +6,15 @@ namespace BeerMath
     {
         private const decimal MagicNumber = 7.25m;
 
-        public static Ibu CalculateIbus(AlphaAcid rating, Ounce Hops, TimeSpan boil)
+        public static Ibu CalculateIbus(AlphaAcid rating, Ounce hops, TimeSpan boilTime)
         {
             return new Ibu(
-                (rating.Value * Hops.Value * StandardUtilization(boil))
+                (rating.Value * hops.Value * StandardUtilization(boilTime))
                 / StandardBitterness.MagicNumber
             );
         }
 
-        private static decimal StandardUtilization (TimeSpan boil)
+        private static decimal StandardUtilization (TimeSpan boilTime)
         {
             /*
              * Percent Utilization Chart:
@@ -30,7 +30,7 @@ namespace BeerMath
                 46-50 minutes 28.1%
                 51-60 minutes 30.0%
             */
-            var minutes = boil.TotalMinutes;
+            var minutes = boilTime.TotalMinutes;
 
             if(minutes < 0)
                 throw new ArgumentOutOfRangeException("Boil time cannot be negative");

@@ -20,43 +20,43 @@ namespace BeerMath
             public const decimal BoilTimeAdditive = 18.11m;
         }
 
-        public const decimal MetricConversionFactor = 7462m;
+        private const decimal MetricConversionFactor = 7462m;
 
-        public static Ibu CalculateIbus(AlphaAcid Rating, Ounce Hops, Gallon BoilVolume,
-            SpecificGravity WortGravity, TimeSpan boil)
+        public static Ibu CalculateIbus(AlphaAcid rating, Ounce hops, Gallon boilVolume,
+            SpecificGravity wortGravity, TimeSpan boilTime)
         {
-            decimal GravityAdjustment = 0;
+            decimal gravityAdjustment = 0;
 
             // According to Rager, if the gravity of the wort exceeds 1.050, there needs to be a gravity adjustment in the equation.
-            if (WortGravity.Value > Rager.Gravity.AdjustmentMinimum)
+            if (wortGravity.Value > Rager.Gravity.AdjustmentMinimum)
             {
-                GravityAdjustment = Rager.AdjustGravity(WortGravity);
+                gravityAdjustment = Rager.AdjustGravity(wortGravity);
             }
 
             // Alpha acid utilization.
-            decimal Utilization = Rager.CalculateUtilization(boil);
+            decimal utilization = Rager.CalculateUtilization(boilTime);
 
             // Convert utilization and alpha acid to percentage
-            Utilization = Utilization / 100m;
-            decimal percentage = Rating.Value / 100m;
+            utilization = utilization / 100m;
+            decimal percentage = rating.Value / 100m;
 
             return new Ibu(
-                (Hops.Value * Utilization * percentage * Rager.MetricConversionFactor)
-                / (BoilVolume.Value * (1 + GravityAdjustment))
+                (hops.Value * utilization * percentage * Rager.MetricConversionFactor)
+                / (boilVolume.Value * (1 + gravityAdjustment))
             );
         }
 
-        internal static decimal AdjustGravity(SpecificGravity WortGravity)
+        internal static decimal AdjustGravity(SpecificGravity wortGravity)
         {
-            return (WortGravity.Value - Rager.Gravity.AdjustmentMinimum)
+            return (wortGravity.Value - Rager.Gravity.AdjustmentMinimum)
                 / Rager.Gravity.ConstantDivisor;
         }
 
-        internal static decimal CalculateUtilization(TimeSpan BoilTimeMinutes)
+        internal static decimal CalculateUtilization(TimeSpan boilTime)
         {
             var adjustedBoilTime =
                 (decimal)Math.Tanh(
-                    (double)((BoilTimeMinutes.TotalMinutes - Rager.Utilization.BoilTimeAdjustment)
+                    (double)((boilTime.TotalMinutes - Rager.Utilization.BoilTimeAdjustment)
                     / Rager.Utilization.BoilTimeDivisor)
                     );
             return Rager.Utilization.BoilTimeAdditive +
