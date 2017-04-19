@@ -4,23 +4,23 @@ namespace BeerMath
 
     public class Evaporation
     {
-        public const decimal StandardRate = 0.1m;
+        private const decimal StandardRate = 0.1m;
 
         /// <summary>
         /// Amount of wort lost to evaporation, using a standard rate
         /// </summary>
-        public static Gallon CalculateLoss (Gallon wort, TimeSpan boil)
+        public static Gallon CalculateLoss (Gallon wort, TimeSpan boilTime)
         {
-            return CalculateLoss(wort, boil, Evaporation.StandardRate);
+            return CalculateLoss(wort, boilTime, Evaporation.StandardRate);
         }
 
         /// <summary>
         /// Amount of wort lost to evaporation, using a custom rate
         /// </summary>
-        public static Gallon CalculateLoss (Gallon wort, TimeSpan boil, decimal rate)
+        public static Gallon CalculateLoss (Gallon wort, TimeSpan boilTime, decimal rate)
         {
             //Evaporation Loss = (Preboil Volume * ((Evaporation Rate / 60) x Total Boil Time) /100)
-            return new Gallon(wort.Value * ((rate / 60.0m) * (decimal)boil.TotalMinutes));
+            return new Gallon(wort.Value * ((rate / 60.0m) * (decimal)boilTime.TotalMinutes));
         }
 
         /// <summary>
