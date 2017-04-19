@@ -7,17 +7,19 @@ namespace BeerMath
         private const decimal RealExtractSubtraction = 0.1m;
         private const decimal FinalGravityMultiplier = 3.55m;
 
-        private Calorie () { }
+        public Calorie(decimal calories)
+        {
+            Value = calories;
+        }
 
-        public static Calorie FromOgFg(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
+        public Calorie(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
         {
             Abw abw = Abw.FromOgFg(OriginalGravity, FinalGravity);
             SpecificGravity realExtract = SpecificGravity.FromRealExtract(OriginalGravity, FinalGravity);
-            return new Calorie() {
-                Value = ((Calorie.AbwMultiplier * abw.Value)
-                    + (Calorie.AbwRealExtractSum * (realExtract.Plato - Calorie.RealExtractSubtraction)))
-                    * FinalGravity.Value * Calorie.FinalGravityMultiplier
-                };
+
+            Value = ((Calorie.AbwMultiplier * abw.Value)
+                + (Calorie.AbwRealExtractSum * (realExtract.Plato - Calorie.RealExtractSubtraction)))
+                * FinalGravity.Value * Calorie.FinalGravityMultiplier;
         }
     }
 }
