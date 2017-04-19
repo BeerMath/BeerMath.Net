@@ -8,11 +8,9 @@ namespace BeerMath
         /// <summary>
         /// Creates an alpha acid from a percent (6.0, not .060)
         /// </summary>
-        public static AlphaAcid FromPercent(decimal raw)
+        public AlphaAcid(decimal raw)
         {
-            return new AlphaAcid() {
-                Value = raw,
-            };
+            Value = raw;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Tests
         [Fact]
         public void IbuFromStandard ()
         {
-            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            AlphaAcid alpha = new AlphaAcid(6.0m);
             Ounce ozs = new Ounce(1.0m);
             TimeSpan minutes = new TimeSpan(0, 60, 0);
 
@@ -22,7 +22,7 @@ namespace Tests
         [Fact]
         public void IbuFromTinseth ()
         {
-            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            AlphaAcid alpha = new AlphaAcid(6.0m);
             Ounce ozs = new Ounce(1.0m);
             TimeSpan minutes = new TimeSpan(0, 60, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
@@ -37,7 +37,7 @@ namespace Tests
         [Fact]
         public void IbuFromRager()
         {
-            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            AlphaAcid alpha = new AlphaAcid(6.0m);
             Ounce ozs = new Ounce(1.0m);
             TimeSpan minutes = new TimeSpan(0, 60, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
@@ -52,7 +52,7 @@ namespace Tests
         [Fact]
         public void IbuFromGaretz()
         {
-            AlphaAcid alpha = AlphaAcid.FromPercent(5.5m);
+            AlphaAcid alpha = new AlphaAcid(5.5m);
             Ounce ozs = new Ounce(1.0m);
             TimeSpan minutes = new TimeSpan(0, 60, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
@@ -70,7 +70,7 @@ namespace Tests
         [Fact]
         public void HbuTest()
         {
-            AlphaAcid alpha = AlphaAcid.FromPercent(6.0m);
+            AlphaAcid alpha = new AlphaAcid(6.0m);
             Ounce ozs = new Ounce(1.0m);
             var result = new Hbu(alpha, ozs);
 
