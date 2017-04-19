@@ -35,7 +35,7 @@ namespace Tests
             SpecificGravity originalGravity = SpecificGravity.FromPoints(70m);
             SpecificGravity finalGravity = SpecificGravity.FromPoints(15m);
 
-            var result = Calorie.FromOgFg(originalGravity, finalGravity);
+            var result = new Calorie(originalGravity, finalGravity);
 
             Assert.True(result.Value <= 228m);
             Assert.True(result.Value >= 227.5m);

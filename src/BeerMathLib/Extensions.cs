@@ -38,11 +38,11 @@ namespace BeerMath.Convenient
 
         public static Hbu hbus(this double value) { return new Hbu((decimal)value); }
 
-        public static AlphaAcid aaus(this decimal value) { return AlphaAcid.FromPercent(value); }
+        public static AlphaAcid aaus(this decimal value) { return new AlphaAcid(value); }
 
-        public static AlphaAcid aaus(this int value) { return AlphaAcid.FromPercent((decimal)value); }
+        public static AlphaAcid aaus(this int value) { return new AlphaAcid((decimal)value); }
 
-        public static AlphaAcid aaus(this double value) { return AlphaAcid.FromPercent((decimal)value); }
+        public static AlphaAcid aaus(this double value) { return new AlphaAcid((decimal)value); }
 
         // ---------------------------------------
         // color

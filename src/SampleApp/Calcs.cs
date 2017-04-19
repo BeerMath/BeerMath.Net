@@ -70,7 +70,7 @@ namespace BeerMath.Sample.Console
             decimal hopsOzsRaw = PromptDecimal("Ounces of hops");
             int boilMinutesRaw = PromptInt("Minutes of boil time");
 
-            AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
+            AlphaAcid alphaAcid = new AlphaAcid(alphaAcidRaw);
             Ounce hopsOzs = new Ounce(hopsOzsRaw);
             TimeSpan boilMinutes = new TimeSpan(0, boilMinutesRaw, 0);
 
@@ -87,7 +87,7 @@ namespace BeerMath.Sample.Console
             decimal gravityRaw = PromptDecimal("Gravity points of wort");
             decimal gallonsRaw = PromptDecimal("Gallons of wort");
 
-            AlphaAcid alphaAcid = AlphaAcid.FromPercent(alphaAcidRaw);
+            AlphaAcid alphaAcid = new AlphaAcid(alphaAcidRaw);
             Ounce hopsOzs = new Ounce(hopsOzsRaw);
             TimeSpan boilMinutes = new TimeSpan(0, boilMinutesRaw, 0);
             SpecificGravity gravity = SpecificGravity.FromPoints(gravityRaw);

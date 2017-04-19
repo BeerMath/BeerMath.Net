@@ -3,10 +3,8 @@ namespace BeerMath
     /// <summary>
     /// Homebrew Bittering Units
     /// </summary>
-    public class Hbu
+    public class Hbu : BeerValue
     {
-        public decimal Value { get; private set; }
-
         public Hbu(decimal hbu)
         {
             Value = hbu;

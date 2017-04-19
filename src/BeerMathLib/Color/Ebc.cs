@@ -3,11 +3,8 @@ namespace BeerMath
     /// <summary>
     /// European Brewery Convention color
     /// </summary>
-    public class Ebc
+    public class Ebc : BeerValue
     {
-        /// <summary>the color in EBC</summary>
-        public decimal Value { get; private set; }
-
         public Ebc(decimal ebc)
         {
             Value = ebc;

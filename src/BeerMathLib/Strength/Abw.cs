@@ -4,10 +4,8 @@ namespace BeerMath
     /// <summary>
     /// Alcohol by weight
     /// </summary>
-    public sealed class Abw
+    public sealed class Abw : BeerValue
     {
-        public decimal Value { get; private set; }
-
         private Abw () { }
 
         public Abw(decimal raw)
