@@ -1,8 +1,7 @@
 namespace BeerMath
 {
-    public class Attenuation
+    public class Attenuation : BeerValue
     {
-        public decimal Value { get; private set; }
         public AttenuationType Type { get; private set; }
 
         public enum AttenuationType

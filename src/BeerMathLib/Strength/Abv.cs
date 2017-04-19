@@ -6,10 +6,8 @@ namespace BeerMath
     /// <summary>
     /// Alcohol by volume
     /// </summary>
-    public sealed class Abv
+    public sealed class Abv : BeerValue
     {
-        public decimal Value { get; private set; }
-
         private Abv () { }
 
         public Abv(decimal raw)

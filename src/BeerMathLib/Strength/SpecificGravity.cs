@@ -5,13 +5,8 @@ namespace BeerMath
     /// <summary>
     /// Represents the gravity
     /// </summary>
-    public class SpecificGravity
+    public class SpecificGravity : BeerValue
     {
-        /// <summary>
-        /// Gets the Value of the Gravity. Like 1.040.
-        /// </summary>
-       public decimal Value { get; private set; }
-
         private SpecificGravity() { }
 
         /// <summary>

@@ -1,9 +1,7 @@
 namespace BeerMath
 {
-    public class AlphaAcid
+    public class AlphaAcid : BeerValue
     {
-        public decimal Value { get; private set; }
-
         // private constructor so consumers cannot create
         private AlphaAcid() { }
 

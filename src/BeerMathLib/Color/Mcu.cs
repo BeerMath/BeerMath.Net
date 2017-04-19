@@ -3,11 +3,8 @@ namespace BeerMath
     /// <summary>
     /// Malt Color Units
     /// </summary>
-    public class Mcu
+    public class Mcu : BeerValue
     {
-        /// <summary>the color in MCUs</summary>
-        public decimal Value { get; private set; }
-
         public Mcu(decimal mcu)
         {
             Value = mcu;

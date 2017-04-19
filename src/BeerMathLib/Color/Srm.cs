@@ -5,11 +5,8 @@ namespace BeerMath
     /// <summary>
     /// Standard Reference Method
     /// </summary>
-    public class Srm
+    public class Srm : BeerValue
     {
-        /// <summary>the color in SRM</summary>
-        public decimal Value { get; private set; }
-
         public Srm(decimal srm)
         {
             Value = srm;

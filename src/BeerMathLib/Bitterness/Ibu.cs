@@ -1,9 +1,7 @@
 namespace BeerMath
 {
-    public class Ibu
+    public class Ibu : BeerValue
     {
-        public decimal Value { get; private set; }
-
         // private constructor so consumers cannot create
         private Ibu() { }
 

@@ -1,13 +1,11 @@
 namespace BeerMath
 {
-    public sealed class Calorie
+    public sealed class Calorie : BeerValue
     {
         private const decimal AbwMultiplier = 6.9m;
         private const decimal AbwRealExtractSum = 4.0m;
         private const decimal RealExtractSubtraction = 0.1m;
         private const decimal FinalGravityMultiplier = 3.55m;
-
-         public decimal Value { get; private set; }
 
         private Calorie () { }
 
