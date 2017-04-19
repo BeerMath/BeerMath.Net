@@ -12,7 +12,7 @@ namespace Tests
             SpecificGravity OG = SpecificGravity.FromPoints(56m);
             SpecificGravity FG = SpecificGravity.FromPoints(10m);
 
-            var result = Attenuation.Apparent(OG, FG);
+            var result = new Attenuation(OG, FG, Attenuation.AttenuationType.Apparent);
 
             Assert.True(result.Value >= 82.14m);
             Assert.True(result.Value <= 82.15m);
@@ -25,7 +25,7 @@ namespace Tests
             SpecificGravity OG = SpecificGravity.FromPoints(56m);
             SpecificGravity FG = SpecificGravity.FromPoints(10m);
 
-            var result = Attenuation.Real(OG, FG);
+            var result = new Attenuation(OG, FG, Attenuation.AttenuationType.Real);
 
             Assert.True(result.Value >= 66.53m);
             Assert.True(result.Value <= 66.54m);
