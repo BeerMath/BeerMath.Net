@@ -22,8 +22,12 @@ namespace BeerMath
 
         private const decimal MetricConversionFactor = 7462m;
 
-        public static Ibu CalculateIbus(AlphaAcid rating, Ounce hops, Gallon boilVolume,
-            SpecificGravity wortGravity, TimeSpan boilTime)
+        public static Ibu CalculateIbus(
+            AlphaAcid rating,
+            Ounce hops,
+            Gallon boilVolume,
+            SpecificGravity wortGravity,
+            TimeSpan boilTime)
         {
             decimal gravityAdjustment = 0;
 

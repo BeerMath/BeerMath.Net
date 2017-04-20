@@ -14,8 +14,12 @@ namespace BeerMath
         private const double BoiltimeMaximumUtilization = 4.15;
         private const decimal NonmetricMagicNumber = 74.9m;
 
-        public static Ibu CalculateIbus(AlphaAcid rating, Ounce hops, TimeSpan boilTime,
-            SpecificGravity gravity, Gallon wort)
+        public static Ibu CalculateIbus(
+            AlphaAcid rating,
+            Ounce hops,
+            TimeSpan boilTime,
+            SpecificGravity gravity,
+            Gallon wort)
         {
             // IBUs = (Boil Time Factor * Bigness Factor) * (mg/l of added alpha acids)
             return new Ibu(

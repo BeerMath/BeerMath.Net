@@ -44,8 +44,14 @@ namespace BeerMath
         /// <param name="elevationFeet">
         /// A <see cref="System.Decimal"/> representing the elevation in feet the batch was brewed at.
         /// </param>
-        public static Ibu CalculateIbus(AlphaAcid rating, Ounce hops, Gallon finalVolume,
-            Gallon boilVolume, SpecificGravity wortGravity, TimeSpan boil, Ibu desiredIbus,
+        public static Ibu CalculateIbus(
+            AlphaAcid rating,
+            Ounce hops,
+            Gallon finalVolume,
+            Gallon boilVolume,
+            SpecificGravity wortGravity,
+            TimeSpan boil,
+            Ibu desiredIbus,
             decimal elevationFeet)
         {
             if (boilVolume.Value == 0)
