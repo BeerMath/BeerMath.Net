@@ -8,22 +8,17 @@ namespace BeerMath
     /// </summary>
     public sealed class Abv : BeerValue
     {
-        private Abv () { }
-
         public Abv(decimal raw)
         {
             this.Value = raw;
         }
 
-        public static Abv FromOgFg(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
+        public static Abv FromOgFg(SpecificGravity originalGravity, SpecificGravity finalGravity)
         {
-            return new Abv()
-            {
-                Value = (OriginalGravity.Value - FinalGravity.Value) * abvFactor(OriginalGravity.Value - FinalGravity.Value),
-            };
+            return new Abv((originalGravity.Value - finalGravity.Value) * abvFactor(originalGravity.Value - finalGravity.Value));
         }
 
-        private static decimal abvFactor(decimal GravityDifference)
+        private static decimal abvFactor(decimal gravityDifference)
         {
             /*
             Grav diff           Factor
@@ -41,30 +36,30 @@ namespace BeerMath
 
             source: http://www.hmrc.gov.uk/manuals/beerpolmanual/BEERPOL12030.htm
              */
-            if(GravityDifference < 0)
+            if(gravityDifference < 0)
                 throw new ArgumentOutOfRangeException("Gravity difference cannot be negative");
 
-            if(GravityDifference <= 0.0069m)
+            if(gravityDifference <= 0.0069m)
                 return 125m;
-            if(GravityDifference <= 0.0104m)
+            if(gravityDifference <= 0.0104m)
                 return 126m;
-            if(GravityDifference <= 0.0172m)
+            if(gravityDifference <= 0.0172m)
                 return 127m;
-            if(GravityDifference <= 0.0261m)
+            if(gravityDifference <= 0.0261m)
                 return 128m;
-            if(GravityDifference <= 0.0360m)
+            if(gravityDifference <= 0.0360m)
                 return 129m;
-            if(GravityDifference <= 0.0465m)
+            if(gravityDifference <= 0.0465m)
                 return 130m;
-            if(GravityDifference <= 0.0571m)
+            if(gravityDifference <= 0.0571m)
                 return 131m;
-            if(GravityDifference <= 0.0679m)
+            if(gravityDifference <= 0.0679m)
                 return 132m;
-            if(GravityDifference <= 0.0788m)
+            if(gravityDifference <= 0.0788m)
                 return 133m;
-            if(GravityDifference <= 0.0897m)
+            if(gravityDifference <= 0.0897m)
                 return 134m;
-            if(GravityDifference <= 0.1007m)
+            if(gravityDifference <= 0.1007m)
                 return 135m;
 
             throw new ArgumentOutOfRangeException("Gravity differences greater than 0.1007 are not supported");

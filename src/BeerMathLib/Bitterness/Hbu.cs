@@ -5,14 +5,14 @@ namespace BeerMath
     /// </summary>
     public class Hbu : BeerValue
     {
-        public Hbu(decimal hbu)
+        public Hbu(decimal hbus)
         {
-            Value = hbu;
+            Value = hbus;
         }
 
-        public Hbu(AlphaAcid Rating, Ounce Hops)
+        public Hbu(AlphaAcid rating, Ounce hops)
         {
-            Value = Rating.Value * Hops.Value;
+            Value = rating.Value * hops.Value;
         }
     }
 }

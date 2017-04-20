@@ -12,10 +12,10 @@ namespace BeerMath
 
         private const decimal RealFactorMagicNumber = 0.81m;
 
-        public Attenuation(decimal rawAttenuation, AttenuationType rawType)
+        public Attenuation(decimal attenuation, AttenuationType type)
         {
-            Value = rawAttenuation;
-            Type = rawType;
+            Value = attenuation;
+            Type = type;
         }
 
         /// <summary>
@@ -27,20 +27,23 @@ namespace BeerMath
         /// gravity than water, an adjustment must be made for the alcohol content when assessing the actual percentages of sugar
         /// fermented.  The real attenuation will always be a lower number than the apparent attenuation.
         /// </summary>
-        /// <param name="OriginalGravity">
+        /// <param name="originalGravity">
         /// A <see cref="SpecificGravity"/>
         /// </param>
-        /// <param name="FinalGravity">
+        /// <param name="finalGravity">
         /// A <see cref="SpecificGravity"/>
         /// </param>
         /// <returns>
         /// A <see cref="System.Decimal"/>
         /// </returns>
-        public Attenuation(SpecificGravity OriginalGravity, SpecificGravity FinalGravity, AttenuationType type = AttenuationType.Apparent)
+        public Attenuation(
+            SpecificGravity originalGravity,
+            SpecificGravity finalGravity,
+            AttenuationType type = AttenuationType.Apparent)
         {
             // Apparent Attenuation % = ((OG-1)-(FG-1)) / (OG-1) x 100
-            Value = ((OriginalGravity.Value - 1) - (FinalGravity.Value - 1))
-                / (OriginalGravity.Value - 1) * 100;
+            Value = ((originalGravity.Value - 1) - (finalGravity.Value - 1))
+                / (originalGravity.Value - 1) * 100;
             Type = AttenuationType.Apparent;
 
             if (type == AttenuationType.Real)

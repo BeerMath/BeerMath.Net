@@ -12,14 +12,14 @@ namespace BeerMath
             Value = calories;
         }
 
-        public Calorie(SpecificGravity OriginalGravity, SpecificGravity FinalGravity)
+        public Calorie(SpecificGravity originalGravity, SpecificGravity finalGravity)
         {
-            Abw abw = Abw.FromOgFg(OriginalGravity, FinalGravity);
-            SpecificGravity realExtract = SpecificGravity.FromRealExtract(OriginalGravity, FinalGravity);
+            Abw abw = Abw.FromOgFg(originalGravity, finalGravity);
+            SpecificGravity realExtract = SpecificGravity.FromRealExtract(originalGravity, finalGravity);
 
             Value = ((Calorie.AbwMultiplier * abw.Value)
                 + (Calorie.AbwRealExtractSum * (realExtract.Plato - Calorie.RealExtractSubtraction)))
-                * FinalGravity.Value * Calorie.FinalGravityMultiplier;
+                * finalGravity.Value * Calorie.FinalGravityMultiplier;
         }
     }
 }

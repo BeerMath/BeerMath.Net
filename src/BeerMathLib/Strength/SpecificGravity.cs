@@ -55,45 +55,49 @@ namespace BeerMath
         /// <param name="grain">
         /// A <see cref="BeerMath.Pound"/> representing the pounds of grain.
         /// </param>
-        /// <param name="ExtractPpg">
+        /// <param name="extractPpg">
         /// A <see cref="System.Decimal"/> representing the extract PPG rating for the grain.
         /// </param>
-        /// <param name="ExtractEfficiency">
+        /// <param name="extractEfficiency">
         /// A <see cref="System.Decimal"/> representing the estimated extract efficiency.
         /// </param>
-        /// <param name="Volume">
+        /// <param name="volume">
         /// A <see cref="BeerMath.Gallon"/> representing the total volume of the batch.
         /// </param>
         /// <returns>
         /// The <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static SpecificGravity OriginalGravityOfFermentable(Pound grain, decimal ExtractPpg,
-            decimal ExtractEfficiency, Gallon Volume)
+        public static SpecificGravity OriginalGravityOfFermentable(
+            Pound grain,
+            decimal extractPpg,
+            decimal extractEfficiency,
+            Gallon volume)
         {
-            if (Volume.Value == 0m)
+            if (volume.Value == 0m)
             {
                 throw new ArgumentOutOfRangeException("volume cannot be 0.");
             }
-            return SpecificGravity.FromPoints((grain.Value * ExtractPpg * ExtractEfficiency) / Volume.Value);
+            return SpecificGravity.FromPoints((grain.Value * extractPpg * extractEfficiency) / volume.Value);
         }
 
         /// <summary>
         /// Calculates the final gravity of a fermentable.
         /// </summary>
-        /// <param name="OriginalGravity">
+        /// <param name="originalGravity">
         /// The original <see cref="SpecificGravity"/> contribution of the grain.
         /// </param>
         /// <returns>
         /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static SpecificGravity FinalGravityOfFermentable(SpecificGravity OriginalGravity,
+        public static SpecificGravity FinalGravityOfFermentable(
+            SpecificGravity originalGravity,
             Attenuation apparent)
         {
             if (apparent.Type != Attenuation.AttenuationType.Apparent)
             {
                 throw new ArgumentException($"Expected an apparent attenuation; got {apparent.Type.ToString()}");
             }
-            return SpecificGravity.FromPoints(OriginalGravity.Points * (1.0m - apparent.Value));
+            return SpecificGravity.FromPoints(originalGravity.Points * (1.0m - apparent.Value));
         }
 
         /// <summary>
@@ -105,42 +109,46 @@ namespace BeerMath
         /// <param name="ExtractPpg">
         /// A <see cref="System.Decimal"/> representing the extract PPG rating for the grain.
         /// </param>
-        /// <param name="ExtractEfficiency">
+        /// <param name="extractEfficiency">
         /// A <see cref="System.Decimal"/> representing the estimated extract efficiency.
         /// </param>
-        /// <param name="Volume">
+        /// <param name="volume">
         /// A <see cref="BeerMath.Gallon"/> representing the total volume of the batch in gallons.
         /// </param>
         /// <returns>
         /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </returns>
-        public static SpecificGravity FinalGravityOfFermentable(Pound grain,
-            decimal ExtractPPG, decimal ExtractEfficiency,
-            Gallon Volume, Attenuation apparent)
+        public static SpecificGravity FinalGravityOfFermentable(
+            Pound grain,
+            decimal extractPPG,
+            decimal extractEfficiency,
+            Gallon volume,
+            Attenuation apparent)
         {
             return FinalGravityOfFermentable(
-                OriginalGravityOfFermentable(grain, ExtractPPG, ExtractEfficiency, Volume),
+                OriginalGravityOfFermentable(grain, extractPPG, extractEfficiency, volume),
                 apparent);
         }
 
         /// <summary>
         /// Calculates the Real Extract Gravity value for the grain.
         /// </summary>
-        /// <param name="OriginalGravity">
+        /// <param name="originalGravity">
         /// The original <see cref="SpecificGravity"/> contribution of the grain.
         /// </param>
-        /// <param name="FinalGravity">
+        /// <param name="finalGravity">
         /// The final <see cref="SpecificGravity"/> contribution of the grain.
         /// </param>
         /// <returns>
         /// The <see cref="SpecificGravity"/> Real Extract value.
         /// </returns>
-        public static SpecificGravity FromRealExtract(SpecificGravity OriginalGravity,
-            SpecificGravity FinalGravity)
+        public static SpecificGravity FromRealExtract(
+            SpecificGravity originalGravity,
+            SpecificGravity finalGravity)
         {
             return SpecificGravity.FromPlato(
-                (RealExtractFinalGravityRatio * FinalGravity.Plato)
-                + (RealExtractOriginalGravityRatio * OriginalGravity.Plato));
+                (RealExtractFinalGravityRatio * finalGravity.Plato)
+                + (RealExtractOriginalGravityRatio * originalGravity.Plato));
         }
 
         private const decimal RealExtractFinalGravityRatio        = 0.8192m;
@@ -172,21 +180,6 @@ namespace BeerMath
         public bool IsZero()
         {
             return Value == 0m;
-        }
-
-        /// <summary>
-        /// Implicit conversion to decimal based on the Points.
-        /// </summary>
-        /// <param name="gravity">
-        /// A <see cref="SpecificGravity"/>.
-        /// </param>
-        /// <returns>
-        /// A <see cref="System.Decimal"/>
-        /// </returns>
-        [Obsolete]
-        public static implicit operator decimal(SpecificGravity gravity)
-        {
-            return gravity.Points;
         }
     }
 }
