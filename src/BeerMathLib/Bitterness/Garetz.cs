@@ -35,10 +35,10 @@ namespace BeerMath
         /// <param name="wortGravity">
         /// A <see cref="SpecificGravity"/> representing the gravity of the wort.
         /// </param>
-        /// <param name="boil">
+        /// <param name="boilTime">
         /// A <see cref="System.TimeSpan"/> representing the time the sample of hops is allowed to boil in the wort.
         /// </param>
-        /// <param name="DesiredIbu">
+        /// <param name="desiredIbus">
         /// A <see cref="BeerMath.Ibu"/> representing the IBU desired.
         /// </param>
         /// <param name="elevationFeet">
@@ -50,7 +50,7 @@ namespace BeerMath
             Gallon finalVolume,
             Gallon boilVolume,
             SpecificGravity wortGravity,
-            TimeSpan boil,
+            TimeSpan boilTime,
             Ibu desiredIbus,
             decimal elevationFeet)
         {
@@ -72,7 +72,7 @@ namespace BeerMath
             decimal hoppingRateFactor = ((concentrationFactor * desiredIbus.Value) / Garetz.HoppingRateDivisor) + 1;
             decimal temperatureFactor = ((elevationFeet / Garetz.ElevationDivisor) * Garetz.ElevationMultiplier) + 1;
             decimal combinedAdjustments = gravityFactor * hoppingRateFactor * temperatureFactor;
-            decimal utilization = Garetz.Utilization((decimal)boil.TotalMinutes);
+            decimal utilization = Garetz.Utilization((decimal)boilTime.TotalMinutes);
 
             return new Ibu(
                 (utilization * rating.Value * hops.Value * MetricConversionFactor)

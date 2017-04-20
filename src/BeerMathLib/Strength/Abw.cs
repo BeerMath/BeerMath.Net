@@ -6,9 +6,9 @@ namespace BeerMath
     /// </summary>
     public sealed class Abw : BeerValue
     {
-        public Abw(decimal raw)
+        public Abw(decimal abw)
         {
-            Value = raw;
+            Value = abw;
         }
 
         public static Abw FromOgFg (SpecificGravity originalGravity, SpecificGravity finalGravity)
