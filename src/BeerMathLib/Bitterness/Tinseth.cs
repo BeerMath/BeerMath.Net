@@ -17,9 +17,9 @@ namespace BeerMath
         public static Ibu CalculateIbus(
             AlphaAcid rating,
             Ounce hops,
-            TimeSpan boilTime,
+            Gallon wort,
             SpecificGravity gravity,
-            Gallon wort)
+            TimeSpan boilTime)
         {
             // IBUs = (Boil Time Factor * Bigness Factor) * (mg/l of added alpha acids)
             return new Ibu(

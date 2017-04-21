@@ -93,7 +93,7 @@ namespace BeerMath.Sample.Console
             SpecificGravity gravity = SpecificGravity.FromPoints(gravityRaw);
             Gallon gallons = new Gallon(gallonsRaw);
 
-            var IBU = Tinseth.CalculateIbus(alphaAcid, hopsOzs, boilMinutes, gravity, gallons);
+            var IBU = Tinseth.CalculateIbus(alphaAcid, hopsOzs, gallons, gravity, boilMinutes);
 
             System.Console.WriteLine($"IBUs = {IBU.Value}");
         }

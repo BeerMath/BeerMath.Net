@@ -28,7 +28,7 @@ namespace Tests
             SpecificGravity gravity = SpecificGravity.FromPoints(50m);
             Gallon gallons = new Gallon(5m);
 
-            var result = Tinseth.CalculateIbus(alpha, ozs, minutes, gravity, gallons);
+            var result = Tinseth.CalculateIbus(alpha, ozs, gallons, gravity, minutes);
 
             Assert.True(result.Value >= 20.73m);
             Assert.True(result.Value <= 20.74m);
