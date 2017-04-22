@@ -34,11 +34,11 @@ First we get the malt color units for the recipe:
 
 ```csharp
 using BeerMath;
+using BeerMath.Convenient;
 
-// TODO: decide whether to support this syntax
-var color1 = Mcu.FromGrainBill(10.lbs(), 1.lovibond(), 5.gallons());
-var color2 = Mcu.FromGrainBill(Lbs: 1, Lovibond: 15, Gallons: 5);
-var color3 = Mcu.FromGrainBill(.25, 125, 5);
+var color1 = Mcu.FromGrainBill(10.lbs(), 1.lov(), 5.gals());    // "convenient" API
+var color2 = Mcu.FromGrainBill(Lbs: 1, Lovibond: 15, Gallons: 5);   // named args
+var color3 = Mcu.FromGrainBill(.25, 125, 5);    // positional args
 var sumColor = color1 + color2 + color3;
 ```
 
