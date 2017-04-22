@@ -1,6 +1,9 @@
 # Getting Started with BeerMath.net
 
-So you want to do beer calculations in your .Net project?  You've come to the right place!
+So you want to do beer calculations in your .Net project?
+You've come to the right place!
+
+Get the binaries from [NuGet.org](https://www.nuget.org/packages/BeerMathLib/), or become a contributor on [GitHub](https://github.com/BeerMath).
 
 Version 0.5 of BeerMath.net has several types of calculations:
 * Wort color
