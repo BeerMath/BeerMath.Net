@@ -3,8 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <VersionPrefix>0.5.0</VersionPrefix>
-    <VersionSuffix>alpha</VersionSuffix>
+    <VersionSuffix>alpha0002</VersionSuffix>
     <Description>A little library for doing brewers' math.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageTags>beer;brewing</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/BeerMath/BeerMath.Net/master/asset/BeerMath.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/BeerMath/BeerMath.net</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/BeerMath/BeerMath.Net/blob/master/license.md</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/BeerMath/BeerMath.Net.git</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

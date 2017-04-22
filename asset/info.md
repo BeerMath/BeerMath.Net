@@ -1,0 +1,1 @@
+.kra files are "Krita" format: https://krita.org/en/
