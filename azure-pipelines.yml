@@ -1,0 +1,21 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'src/BeerMath.sln'
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration) $(solution)
+  displayName: Build $(buildConfiguration)
+
+- script: dotnet test $(solution) --logger:trx
+  displayName: Test
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/TestResults/*.trx'
